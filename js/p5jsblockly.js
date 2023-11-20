@@ -165,6 +165,17 @@ function viewCode() {
 
 function p5Init() {
     Blockly.mainWorkspace.clear();
+    
+    Blockly.mainWorkspace.addChangeListener(() => {
+      if (Blockly.mainWorkspace.isDragging()) return; // Don't update while changes are happening.
+
+      // save to local storage
+      let xml = Blockly.Xml.workspaceToDom(Blockly.mainWorkspace);
+      let xml_text = Blockly.Xml.domToText(xml);
+      window.localStorage.setItem("xmlLocalStorage", xml_text);
+    });
+
+
     let urlString = window.location.hash;
     if (urlString.length > 0) {
         try {
@@ -184,7 +195,14 @@ function p5Init() {
            //Blockly.Xml.domToWorkspace(document.getElementById('startBlocks'), workspace);
         }
     } else {
-        //Blockly.Xml.domToWorkspace(document.getElementById('startBlocks'), workspace);
+        // load blockly workspace from local storage
+        let xml = window.localStorage.getItem("xmlLocalStorage");
+        if (xml) {
+            let xmlDom = Blockly.Xml.textToDom(xml);
+            Blockly.Xml.domToWorkspace(Blockly.mainWorkspace, xmlDom);
+        } else {
+            //Blockly.Xml.domToWorkspace(document.getElementById('startBlocks'), workspace);
+        }
     }
     let p5jsBreite = 0.3*$(window).width();
     let breite1 = "width: " + p5jsBreite + "px";

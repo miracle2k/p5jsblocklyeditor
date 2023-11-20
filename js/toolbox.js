@@ -1264,7 +1264,7 @@ var NewToolbox = {
           "kind": "block",
           "type": "strokeweight_var",
           "inputs": {
-            "px": number(0)
+            "dicke": number(0)
           }
         }
       ]
