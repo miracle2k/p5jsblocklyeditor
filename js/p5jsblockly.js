@@ -48,7 +48,7 @@ var workspace = Blockly.inject(blocklyDiv, {
             readOnly: false,
             rtl: false,
             scrollbars: true,
-            toolbox: p5jsBlocklyEditorToolbox,            
+            toolbox: NewToolbox,            
             toolboxPosition: 'start',            
             trashcan: true,
             sounds: true,
@@ -62,7 +62,7 @@ var workspace = Blockly.inject(blocklyDiv, {
             } 
         });
 
-Blockly.Xml.domToWorkspace(document.getElementById('startBlocks'), workspace);
+//Blockly.Xml.domToWorkspace(document.getElementById('startBlocks'), workspace);
 
 var onresize = function(e) {
     // Compute the absolute coordinates and dimensions of blocklyArea.
@@ -88,7 +88,7 @@ var onresize = function(e) {
 };
 
 let splitInstance = Split(['#split-0', '#split-1'], {
-        minSize: [0, 10],
+        minSize: [300, 10],
         snapOffset: 80,
         gutterSize: 20,
     })
@@ -112,8 +112,8 @@ function updateP5() {
     var myblocks = Blockly.mainWorkspace.getAllBlocks()
     for(var i = 0; i < myblocks.length; i++){
       if(myblocks[i].type == 'setup'){
-        canvasWidth = myblocks[i].getFieldValue('canvasBreite');
-        canvasHeight = myblocks[i].getFieldValue('canvasHoehe');
+        canvasWidth = myblocks[i].getFieldValue('canvasWidth');
+        canvasHeight = myblocks[i].getFieldValue('canvasHeight');
       }
     }
     document.getElementById('p5jsContainer').style.width = canvasWidth;
@@ -129,7 +129,7 @@ function updateP5() {
     } catch (e) { 
         $('#loggerDiv').removeClass('alert alert-light').addClass('alert alert-danger');
         $("#loggerDiv").css("max-width", "400px");
-        let text01 = '<strong>Im Code gibt es einen Fehler:<\/strong><br><br>' + e.toString() + '<hr>Mit \"rechter Maustaste - Rückgängig\" können die letzten Änderungen zurückgenommen werden.'
+        let text01 = '<strong>There is an error in the code:<\/strong><br><br>' + e.toString() + '<hr>With "right click -> undo" you can undo your latest changes.'
         document.getElementById('loggerDiv').innerHTML = text01;        
     }
     let linksProzent = (canvasWidth+25)/$(window).width() * 100;
@@ -181,10 +181,10 @@ function p5Init() {
             }
         }
         catch {
-           Blockly.Xml.domToWorkspace(document.getElementById('startBlocks'), workspace);
+           //Blockly.Xml.domToWorkspace(document.getElementById('startBlocks'), workspace);
         }
     } else {
-        Blockly.Xml.domToWorkspace(document.getElementById('startBlocks'), workspace);
+        //Blockly.Xml.domToWorkspace(document.getElementById('startBlocks'), workspace);
     }
     let p5jsBreite = 0.3*$(window).width();
     let breite1 = "width: " + p5jsBreite + "px";

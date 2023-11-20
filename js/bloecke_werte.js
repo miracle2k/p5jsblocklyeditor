@@ -4,7 +4,7 @@
 Blockly.Blocks['mousex'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("Maus: x-Koordinate");
+        .appendField("mouse x");
     this.setOutput(true, null);
     this.setColour(farbep5Werte);
     this.setTooltip("Liefert die aktuelle x-Koordinate der Maus.");
@@ -20,7 +20,7 @@ Blockly.JavaScript['mousex'] = function(block) {
 Blockly.Blocks['pmousex'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("Maus: vorige x-Koordinate");
+        .appendField("mouse preview x");
     this.setOutput(true, null);
     this.setColour(farbep5Werte);
     this.setTooltip("Liefert die vorige x-Koordinate der Maus.");
@@ -36,7 +36,7 @@ Blockly.JavaScript['pmousex'] = function(block) {
 Blockly.Blocks['mousey'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("Maus: y-Koordinate");
+        .appendField("mouse y");
     this.setOutput(true, null);
     this.setColour(farbep5Werte);
     this.setTooltip("Liefert die y-Koordinate der Maus.");
@@ -52,7 +52,7 @@ Blockly.JavaScript['mousey'] = function(block) {
 Blockly.Blocks['pmousey'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("Maus: vorige y-Koordinate");
+        .appendField("mouse preview y");
     this.setOutput(true, null);
     this.setColour(farbep5Werte);
     this.setTooltip("Liefert die vorige y-Koordinate der Maus.");
@@ -68,7 +68,7 @@ Blockly.JavaScript['pmousey'] = function(block) {
 Blockly.Blocks['mouse_pressed'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("Die Maustaste ist gedrückt!");
+        .appendField("is mouse pressed?");
     this.setOutput(true, null);
     this.setColour(farbep5Werte);
     this.setTooltip("Liefert \'wahr\', wenn die Maustaste gedrückt ist, sonst \'falsch\'.");
@@ -84,7 +84,7 @@ Blockly.JavaScript['mouse_pressed'] = function(block) {
 Blockly.Blocks['canvaswidth'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("Breite der Zeichenfläche");
+        .appendField("canvas width");
     this.setOutput(true, null);
     this.setColour(farbep5Werte);
     this.setTooltip("Liefert die aktuelle Breite der Zeichenfläche.");
@@ -100,7 +100,7 @@ Blockly.JavaScript['canvaswidth'] = function(block) {
 Blockly.Blocks['canvasheight'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("Höhe der Zeichenfläche");
+        .appendField("canvas height");
     this.setOutput(true, null);
     this.setColour(farbep5Werte);
     this.setTooltip("Liefert die aktuelle Höhe der Zeichenfläche.");
@@ -116,7 +116,7 @@ Blockly.JavaScript['canvasheight'] = function(block) {
 Blockly.Blocks['entfernung_var'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("Entfernung von");
+        .appendField("distance between");
     this.appendValueInput("x1")
         .setCheck("Number")
         .appendField("x1 =");
@@ -151,7 +151,7 @@ Blockly.JavaScript['entfernung_var'] = function(block) {
 Blockly.Blocks['map_value'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("Rechne ");
+        .appendField("map ");
     this.appendValueInput("wertVariable")
         .setCheck("Number")
     this.appendValueInput("w1min")
@@ -161,7 +161,7 @@ Blockly.Blocks['map_value'] = {
         .setCheck("Number")
         .appendField("max:");
     this.appendDummyInput()
-        .appendField("nach");
+        .appendField("to");
     this.appendValueInput("w2min")
         .setCheck("Number")
         .appendField("min:");
@@ -253,7 +253,7 @@ Blockly.JavaScript['uhrzeit_stunde'] = function(block) {
 Blockly.Blocks['zeit_millis'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("Millisekunden seit Programmstart");
+        .appendField("millis");
     this.setOutput(true, null);
     this.setColour(farbep5Werte);
     this.setTooltip("Liefert die Anzahl der Millisekunden seit Programmstart.");
@@ -269,7 +269,7 @@ Blockly.JavaScript['zeit_millis'] = function(block) {
 Blockly.Blocks['p5key'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("Tastatur: Taste");
+        .appendField("keyboard: key");
     this.setOutput(true, null);
     this.setColour(farbep5Werte);
     this.setTooltip("Liefert die gedrückte Taste des aktuellen Tastaturlayouts.");
@@ -285,7 +285,7 @@ Blockly.JavaScript['p5key'] = function(block) {
 Blockly.Blocks['p5keyCode'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("Tastatur: Tasten-Code");
+        .appendField("keyboard: keycode");
     this.setOutput(true, null);
     this.setColour(farbep5Werte);
     this.setTooltip("Liefert den Tasten-Code der gedrückten Taste.");

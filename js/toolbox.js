@@ -2,6 +2,411 @@
 
 var p5jsBlocklyEditorToolbox = `
 <xml id="toolbox" style="display: none">    
+    <category name="Grundformen" colour="#e67e22">
+      <block type="ellipse_var">
+        <value name="x">
+          <shadow type="math_number">
+            <field name="NUM">0</field>
+          </shadow>
+        </value>
+        <value name="y">
+          <shadow type="math_number">
+            <field name="NUM">0</field>
+          </shadow>
+        </value> 
+        <value name="breite">
+          <shadow type="math_number">
+            <field name="NUM">0</field>
+          </shadow>
+        </value> 
+        <value name="hoehe">
+          <shadow type="math_number">
+            <field name="NUM">0</field>
+          </shadow>
+        </value>         
+      </block>
+      <block type="point_var">
+        <value name="x">
+          <shadow type="math_number">
+            <field name="NUM">0</field>
+          </shadow>
+        </value>
+        <value name="y">
+          <shadow type="math_number">
+            <field name="NUM">0</field>
+          </shadow>
+        </value>       
+      </block>
+      <block type="line_var">
+        <value name="x1">
+          <shadow type="math_number">
+            <field name="NUM">0</field>
+          </shadow>
+        </value>
+        <value name="y1">
+          <shadow type="math_number">
+            <field name="NUM">0</field>
+          </shadow>
+        </value> 
+        <value name="x2">
+          <shadow type="math_number">
+            <field name="NUM">0</field>
+          </shadow>
+        </value>
+        <value name="y2">
+          <shadow type="math_number">
+            <field name="NUM">0</field>
+          </shadow>
+        </value>         
+      </block>
+      <block type="triangle_var">
+        <value name="x1">
+          <shadow type="math_number">
+            <field name="NUM">0</field>
+          </shadow>
+        </value>
+        <value name="y1">
+          <shadow type="math_number">
+            <field name="NUM">0</field>
+          </shadow>
+        </value> 
+        <value name="x2">
+          <shadow type="math_number">
+            <field name="NUM">0</field>
+          </shadow>
+        </value>
+        <value name="y2">
+          <shadow type="math_number">
+            <field name="NUM">0</field>
+          </shadow>
+        </value>
+        <value name="x3">
+          <shadow type="math_number">
+            <field name="NUM">0</field>
+          </shadow>
+        </value>
+        <value name="y3">
+          <shadow type="math_number">
+            <field name="NUM">0</field>
+          </shadow>
+        </value>         
+      </block>
+      <block type="rect_var">
+        <value name="x">
+          <shadow type="math_number">
+            <field name="NUM">0</field>
+          </shadow>
+        </value>
+        <value name="y">
+          <shadow type="math_number">
+            <field name="NUM">0</field>
+          </shadow>
+        </value> 
+        <value name="breite">
+          <shadow type="math_number">
+            <field name="NUM">0</field>
+          </shadow>
+        </value>
+        <value name="hoehe">
+          <shadow type="math_number">
+            <field name="NUM">0</field>
+          </shadow>
+        </value>      
+      </block>   
+      <block type="polygon"></block> 
+      <block type="vertex_var">
+        <value name="x">
+          <shadow type="math_number">
+            <field name="NUM">0</field>
+          </shadow>
+        </value>
+        <value name="y">
+          <shadow type="math_number">
+            <field name="NUM">0</field>
+          </shadow>
+        </value>       
+      </block> 
+      <block type="p5_image_load">
+        <value name="imgVar">
+          <block type="variables_get">
+            <field name="VAR">imgVar</field>
+          </block>
+        </value>
+        <value name="imgString">
+          <shadow type="text">
+            <field name="TEXT">base64</field>
+          </shadow>
+        </value>
+      </block> 
+      <block type="p5_image_pos">
+        <value name="imgVar">
+          <block type="variables_get">
+            <field name="VAR">imgVar</field>
+          </block>
+        </value>
+        <value name="xKoord">
+          <shadow type="math_number">
+            <field name="NUM">0</field>
+          </shadow>
+        </value>
+        <value name="yKoord">
+          <shadow type="math_number">
+            <field name="NUM">0</field>
+          </shadow>
+        </value>          
+      </block>      
+      </category>    
+      <category name="Aussehen" colour="#95a5a6">
+      <block type="p5_color">
+        <value name="r">
+          <shadow type="rgb_num">
+            <field name="rgbnum">0</field>
+          </shadow>
+        </value>
+        <value name="g">
+          <shadow type="rgb_num">
+            <field name="rgbnum">0</field>
+          </shadow>
+        </value>       
+        <value name="b">
+          <shadow type="rgb_num">
+            <field name="rgbnum">0</field>
+          </shadow>
+        </value>
+        <value name="t">
+          <shadow type="rgb_num">
+            <field name="rgbnum">0</field>
+          </shadow>
+        </value>        
+      </block>        
+      <block type="background_pick"></block>
+      <block type="background_colorname">
+        <value name="farbname">
+          <shadow type="text">
+            <field name="TEXT">SteelBlue</field>
+          </shadow>
+        </value>        
+      </block>
+      <block type="background_var">
+        <value name="r">
+          <shadow type="rgb_num">
+            <field name="rgbnum">0</field>
+          </shadow>
+        </value>
+        <value name="g">
+          <shadow type="rgb_num">
+            <field name="rgbnum">0</field>
+          </shadow>
+        </value>       
+        <value name="b">
+          <shadow type="rgb_num">
+            <field name="rgbnum">0</field>
+          </shadow>
+        </value>       
+      </block>       
+      <block type="stroke_pick"></block> 
+      <block type="stroke_colorname">
+        <value name="farbname">
+          <shadow type="text">
+            <field name="TEXT">SteelBlue</field>
+          </shadow>
+        </value>        
+      </block>      
+      <block type="stroke_var">
+        <value name="r">
+          <shadow type="rgb_num">
+            <field name="rgbnum">0</field>
+          </shadow>
+        </value>
+        <value name="g">
+          <shadow type="rgb_num">
+            <field name="rgbnum">0</field>
+          </shadow>
+        </value>       
+        <value name="b">
+          <shadow type="rgb_num">
+            <field name="rgbnum">0</field>
+          </shadow>
+        </value>
+        <value name="t">
+          <shadow type="rgb_num">
+            <field name="rgbnum">0</field>
+          </shadow>
+        </value>        
+      </block>      
+      <block type="fill_pick"></block>
+      <block type="fill_colorname">
+        <value name="farbname">
+          <shadow type="text">
+            <field name="TEXT">SteelBlue</field>
+          </shadow>
+        </value>        
+      </block>        
+      <block type="fill_var">
+        <value name="r">
+          <shadow type="rgb_num">
+            <field name="rgbnum">0</field>
+          </shadow>
+        </value>
+        <value name="g">
+          <shadow type="rgb_num">
+            <field name="rgbnum">0</field>
+          </shadow>
+        </value>       
+        <value name="b">
+          <shadow type="rgb_num">
+            <field name="rgbnum">0</field>
+          </shadow>
+        </value>
+        <value name="t">
+          <shadow type="rgb_num">
+            <field name="rgbnum">0</field>
+          </shadow>
+        </value>        
+      </block>
+      <block type="nofill"></block>        
+      <block type="strokeweight_var">
+        <value name="dicke">
+          <shadow type="math_number">
+            <field name="NUM">0</field>
+          </shadow>
+        </value> 
+      </block>
+      </category>     
+      <category name="Text" colour="#5ba58c">
+      <block type="p5textalign"></block>
+      <block type="text"></block>
+      <block type="text_unicodezeichen"></block>
+      <block type="p5text_var">
+        <value name="text_eingabe">
+          <shadow type="text">
+            <field name="TEXT">abc</field>
+          </shadow>
+        </value>
+        <value name="xKoord">
+          <shadow type="math_number">
+            <field name="NUM">0</field>
+          </shadow>
+        </value>
+        <value name="yKoord">
+          <shadow type="math_number">
+            <field name="NUM">0</field>
+          </shadow>
+        </value>         
+      </block>
+      <block type="p5textbox_var">
+        <value name="text_eingabe">
+          <shadow type="text">
+            <field name="TEXT">abc</field>
+          </shadow>
+        </value>
+        <value name="xKoord">
+          <shadow type="math_number">
+            <field name="NUM">0</field>
+          </shadow>
+        </value>
+        <value name="yKoord">
+          <shadow type="math_number">
+            <field name="NUM">0</field>
+          </shadow>
+        </value>
+        <value name="breite">
+          <shadow type="math_number">
+            <field name="NUM">0</field>
+          </shadow>
+        </value>
+        <value name="hoehe">
+          <shadow type="math_number">
+            <field name="NUM">0</field>
+          </shadow>
+        </value>        
+      </block>
+      <block type="p5textsize_var">
+        <value name="text_groesse">
+          <shadow type="math_number">
+            <field name="NUM">0</field>
+          </shadow>
+        </value>        
+      </block>
+      <block type="anzeige_stellen">
+        <value name="zahl">
+          <shadow type="math_number">
+            <field name="NUM">0</field>
+          </shadow>
+        </value>
+        <value name="anzahlstellen">
+          <shadow type="math_number">
+            <field name="NUM">0</field>
+          </shadow>
+        </value>         
+      </block>      
+      <block type="text_join"></block>
+      <block type="text_length">
+        <value name="VALUE">
+          <shadow type="text">
+            <field name="TEXT">abc</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="zeichen_an_stelle_aus_string">
+        <value name="zeichenfolge">
+          <shadow type="text">
+            <field name="TEXT">abc</field>
+          </shadow>
+        </value>
+        <value name="stelle">
+          <shadow type="math_number">
+            <field name="NUM">0</field>
+          </shadow>
+        </value>         
+      </block>
+      <block type="string_in_ganzzahl">
+        <value name="zeichenfolge">
+          <shadow type="text">
+            <field name="TEXT">abc</field>
+          </shadow>
+        </value>
+      </block>       
+      <block type="text_changeCase">
+        <value name="TEXT">
+          <shadow type="text">
+            <field name="TEXT">abc</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="text_input">
+        <value name="textFeldVariable">
+          <block type="variables_get">
+            <field name="VAR">eingabefeld</field>
+          </block>
+        </value>        
+        <value name="xKoord">
+          <shadow type="math_number">
+            <field name="NUM">0</field>
+          </shadow>
+        </value>
+        <value name="yKoord">
+          <shadow type="math_number">
+            <field name="NUM">0</field>
+          </shadow>
+        </value>
+        <value name="breite">
+          <shadow type="math_number">
+            <field name="NUM">0</field>
+          </shadow>
+        </value>      
+        <value name="speicherVariable">
+          <block type="variables_get">
+            <field name="VAR">textVar</field>
+          </block>
+        </value>
+          <value name="zeichenflaecheVariable">
+            <block type="variables_get">
+              <field name="VAR">zeichenflaeche</field>
+            </block>
+          </value>         
+      </block>
+    </category> 
     <category name="Werte" colour="#2f7db7">
         <block type="p5key"></block>
         <block type="p5keyCode"></block>
@@ -616,3 +1021,1067 @@ var p5jsBlocklyEditorToolbox = `
     </category>      
     </xml>
 `
+
+function number(x) {
+  return {
+    "shadow": {
+      "type": "math_number",
+      "fields": {
+        "NUM": x
+      }
+    }
+  }
+}
+
+// https://github.com/google/blockly/issues/4464#issuecomment-1261879532
+var NewToolbox = {
+  "kind": "categoryToolbox",
+  "contents": [
+    {
+      "kind": "category",
+      "name": "p5 Structure",
+      "colour": "#929292",
+      "contents": [
+        {
+          "kind": "block",
+          "type": "setup",
+          "fields": {
+            "canvasVariable": {
+              "type": "text",
+              "fields": {
+                "TEXT": "sdf"
+              }
+            }
+          }
+        },
+        {
+          "kind": "block",
+          "type": "draw"
+        },
+        {
+          "kind": "block",
+          "type": "preload"
+        },
+        {
+          "kind": "block",
+          "type": "mousepressed"
+        },
+        {
+          "kind": "block",
+          "type": "keypressed"
+        }
+      ]
+    },
+
+    {
+      "kind": "category",
+      "name": "p5 Values",
+      "colour": "#2f7db7",
+      "contents": [
+        {"kind": "block", "type": "canvaswidth"},
+        {"kind": "block", "type": "canvasheight"},
+        {"kind": "block", "type": "mousex"},
+        {"kind": "block", "type": "mousey"},
+        {"kind": "block", "type": "pmousex"},
+        {"kind": "block", "type": "pmousey"},
+        {"kind": "block", "type": "p5key"},
+        {"kind": "block", "type": "p5keyCode"},        
+        {"kind": "block", "type": "mouse_pressed"},        
+        // {"kind": "block", "type": "uhrzeit_digital"},
+        // {"kind": "block", "type": "uhrzeit_stunde"},
+        // {"kind": "block", "type": "uhrzeit_minute"},
+        // {"kind": "block", "type": "uhrzeit_sekunde"},
+        {"kind": "block", "type": "zeit_millis"},
+        {"kind": "block", "type": "map_value"},
+        // {
+        //   "kind": "block",
+        //   "type": "entfernung_var",        
+        // },
+        // ... Other blocks continue in a similar pattern
+      ]
+    },
+
+    {
+      "kind": "category",
+      "name": "p5 Helpers",
+      "colour": "#da5a73",
+      "contents": [
+        {"kind": "block", "type": "moduloframe"},
+        {"kind": "block", "type": "framerate_number"},
+        {"kind": "block", "type": "p5_random", 
+          "inputs": {
+            "z1": number(0),
+            "z2": number(0),
+          }
+        },
+        {"kind": "block", "type": "p5_noise", 
+          "inputs": {
+            "input": number(0),
+          }},
+        {"kind": "block", "type": "push_pop"},
+        {"kind": "block", "type": "translate_var"},
+        {"kind": "block", "type": "rotate_var"},
+        {"kind": "block", "type": "scale_var"},
+        {"kind": "block", "type": "p5_button"}
+      ]
+    },
+
+    {
+      "kind": "category",
+      "name": "p5: Basic Shapes",
+      "colour": "#e67e22",
+      "contents": [
+        {
+          "kind": "block",
+          "type": "ellipse_var",
+          "inputs": {
+            "x": number(0),
+            "y": number(0),
+            "breite": number(0),
+            "hoehe": number(0),
+          }
+        },
+        {
+          "kind": "block",
+          "type": "point_var",
+          "inputs": {
+            "x": number(0),
+            "y": number(0),
+          }
+        },
+        {
+          "kind": "block",
+          "type": "line_var",
+          "inputs": {
+            "x1": number(0),
+            "y1": number(0),
+            "x2": number(0),
+            "y2": number(0),
+          }
+        },
+        {
+          "kind": "block",
+          "type": "triangle_var",
+          "inputs": {
+            "x1": number(0),
+            "y1": number(0),
+            "x2": number(0),
+            "y2": number(0),
+            "x3": number(0),
+            "y3": number(0),
+          }
+        },
+        {
+          "kind": "block",
+          "type": "rect_var",
+          "inputs": {
+            "x": number(0),
+            "y": number(0),
+            "breite": number(0),
+            "hoehe": number(0),
+          }
+        },
+        {"kind": "block", "type": "polygon"},
+        {
+          "kind": "block",
+          "type": "vertex_var",
+          "inputs": {
+            "x": number(0),
+            "y": number(0),
+          }
+        },
+        {
+          "kind": "block",
+          "type": "p5_image_load"
+        },
+        {
+          "kind": "block",
+          "type": "p5_image_pos"
+        }
+      ]
+    },
+    {
+      "kind": "category",
+      "name": "p5: Colors & Visuals",
+      "colour": "#95a5a6",
+      "contents": [
+        {
+          "kind": "block",
+          "type": "p5_color",
+          "inputs": {
+            "r": number(0),
+            "g": number(0),
+            "b": number(0),
+            "t": number(0),
+          }
+        },
+        {"kind": "block", "type": "background_pick"},
+        {
+          "kind": "block",
+          "type": "background_colorname"
+        },
+        {
+          "kind": "block",
+          "type": "background_var",
+          "inputs": {
+            "r": number(0),
+            "g": number(0),
+            "b": number(0)
+          }
+        },
+        {"kind": "block", "type": "stroke_pick"},
+        {
+          "kind": "block",
+          "type": "stroke_colorname"
+        },
+        {
+          "kind": "block",
+          "type": "stroke_var",
+          "inputs": {
+            "r": number(0),
+            "g": number(0),
+            "b": number(0),
+            "t": number(0),
+          }
+        },
+        {"kind": "block", "type": "fill_pick"},
+        {
+          "kind": "block",
+          "type": "fill_colorname"
+        },
+        {
+          "kind": "block",
+          "type": "fill_var",
+          "inputs": {
+            "r": number(0),
+            "g": number(0),
+            "b": number(0),
+            "t": number(0),
+          }
+        },
+        {"kind": "block", "type": "nofill"},
+        {
+          "kind": "block",
+          "type": "strokeweight_var",
+          "inputs": {
+            "px": number(0)
+          }
+        }
+      ]
+    },
+    {
+      "kind": "category",
+      "name": "p5: Text",
+      "colour": "#5ba58c",
+      "contents": [
+        {"kind": "block", "type": "p5textalign"},
+        {"kind": "block", "type": "text"},
+        {"kind": "block", "type": "text_unicodezeichen"},
+        {
+          "kind": "block",
+          "type": "p5text_var"
+        },
+        {
+          "kind": "block",
+          "type": "p5textbox_var"
+        },
+        {
+          "kind": "block",
+          "type": "p5textsize_var"
+        },
+        {
+          "kind": "block",
+          "type": "anzeige_stellen"
+        },
+        {"kind": "block", "type": "text_join"},
+        {
+          "kind": "block",
+          "type": "text_length"
+        },
+        {
+          "kind": "block",
+          "type": "zeichen_an_stelle_aus_string"
+        },
+        {
+          "kind": "block",
+          "type": "string_in_ganzzahl"
+        },
+        {
+          "kind": "block",
+          "type": "text_changeCase"
+        },
+        {
+          "kind": "block",
+          "type": "text_input"
+        }
+      ]
+    },
+
+    {
+      "kind": "category",
+      "name": "Logic",
+      "contents": [
+        {
+          "kind": "block",
+          "type": "controls_if"
+        },
+        {
+          "kind": "block",
+          "type": "logic_compare"
+        },
+        {
+          "kind": "block",
+          "type": "logic_operation"
+        },
+        {
+          "kind": "block",
+          "type": "logic_negate"
+        },
+        {
+          "kind": "block",
+          "type": "logic_boolean"
+        },
+        {
+          "kind": "block",
+          "type": "logic_null"
+        },
+        {
+          "kind": "block",
+          "type": "logic_ternary"
+        }
+      ],
+      "categorystyle": "logic_category"
+    },
+    
+
+    {
+      "kind": "category",
+      "name": "Loops",
+      "contents": [
+        {
+          "kind": "block",
+          "type": "controls_repeat_ext",
+          "inputs": {
+            "TIMES": {
+              "shadow": {
+                "type": "math_number",
+                "fields": {
+                  "NUM": "10"
+                }
+              }
+            }
+          }
+        },
+        {
+          "kind": "block",
+          "type": "controls_whileUntil"
+        },
+        {
+          "kind": "block",
+          "type": "controls_for",
+          "inputs": {
+            "FROM": {
+              "shadow": {
+                "type": "math_number",
+                "fields": {
+                  "NUM": "1"
+                }
+              }
+            },
+            "TO": {
+              "shadow": {
+                "type": "math_number",
+                "fields": {
+                  "NUM": "10"
+                }
+              }
+            },
+            "BY": {
+              "shadow": {
+                "type": "math_number",
+                "fields": {
+                  "NUM": "1"
+                }
+              }
+            }
+          }
+        },
+        {
+          "kind": "block",
+          "type": "controls_forEach"
+        },
+        {
+          "kind": "block",
+          "type": "controls_flow_statements"
+        }
+      ],
+      "categorystyle": "loop_category"
+    },
+    {
+      "kind": "category",
+      "name": "Math",
+      "contents": [
+        {
+          "kind": "block",
+          "type": "math_number",
+          "fields": {
+            "NUM": "123"
+          }
+        },
+        {
+          "kind": "block",
+          "type": "math_arithmetic",
+          "inputs": {
+            "A": {
+              "shadow": {
+                "type": "math_number",
+                "fields": {
+                  "NUM": "1"
+                }
+              }
+            },
+            "B": {
+              "shadow": {
+                "type": "math_number",
+                "fields": {
+                  "NUM": "1"
+                }
+              }
+            }
+          }
+        },
+        {
+          "kind": "block",
+          "type": "math_single",
+          "inputs": {
+            "NUM": {
+              "shadow": {
+                "type": "math_number",
+                "fields": {
+                  "NUM": "9"
+                }
+              }
+            }
+          }
+        },
+        {
+          "kind": "block",
+          "type": "math_trig",
+          "inputs": {
+            "NUM": {
+              "shadow": {
+                "type": "math_number",
+                "fields": {
+                  "NUM": "45"
+                }
+              }
+            }
+          }
+        },
+        {
+          "kind": "block",
+          "type": "math_constant"
+        },
+        {
+          "kind": "block",
+          "type": "math_number_property",
+          "inputs": {
+            "NUMBER_TO_CHECK": {
+              "shadow": {
+                "type": "math_number",
+                "fields": {
+                  "NUM": "0"
+                }
+              }
+            }
+          }
+        },
+        {
+          "kind": "block",
+          "type": "math_round",
+          "inputs": {
+            "NUM": {
+              "shadow": {
+                "type": "math_number",
+                "fields": {
+                  "NUM": "3.1"
+                }
+              }
+            }
+          }
+        },
+        {
+          "kind": "block",
+          "type": "math_on_list"
+        },
+        {
+          "kind": "block",
+          "type": "math_modulo",
+          "inputs": {
+            "DIVIDEND": {
+              "shadow": {
+                "type": "math_number",
+                "fields": {
+                  "NUM": "64"
+                }
+              }
+            },
+            "DIVISOR": {
+              "shadow": {
+                "type": "math_number",
+                "fields": {
+                  "NUM": "10"
+                }
+              }
+            }
+          }
+        },
+        {
+          "kind": "block",
+          "type": "math_constrain",
+          "inputs": {
+            "VALUE": {
+              "shadow": {
+                "type": "math_number",
+                "fields": {
+                  "NUM": "50"
+                }
+              }
+            },
+            "LOW": {
+              "shadow": {
+                "type": "math_number",
+                "fields": {
+                  "NUM": "1"
+                }
+              }
+            },
+            "HIGH": {
+              "shadow": {
+                "type": "math_number",
+                "fields": {
+                  "NUM": "100"
+                }
+              }
+            }
+          }
+        },
+        {
+          "kind": "block",
+          "type": "math_random_int",
+          "inputs": {
+            "FROM": {
+              "shadow": {
+                "type": "math_number",
+                "fields": {
+                  "NUM": "1"
+                }
+              }
+            },
+            "TO": {
+              "shadow": {
+                "type": "math_number",
+                "fields": {
+                  "NUM": "100"
+                }
+              }
+            }
+          }
+        },
+        {
+          "kind": "block",
+          "type": "math_random_float"
+        },
+        {
+          "kind": "block",
+          "type": "math_atan2",
+          "inputs": {
+            "X": {
+              "shadow": {
+                "type": "math_number",
+                "fields": {
+                  "NUM": "1"
+                }
+              }
+            },
+            "Y": {
+              "shadow": {
+                "type": "math_number",
+                "fields": {
+                  "NUM": "1"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "categorystyle": "math_category"
+    },
+    {
+      "kind": "category",
+      "name": "Text",
+      "contents": [
+        {
+          "kind": "block",
+          "type": "text"
+        },
+        {
+          "kind": "block",
+          "type": "text_join"
+        },
+        {
+          "kind": "block",
+          "type": "text_append",
+          "inputs": {
+            "TEXT": {
+              "shadow": {
+                "type": "text"
+              }
+            }
+          }
+        },
+        {
+          "kind": "block",
+          "type": "text_length",
+          "inputs": {
+            "VALUE": {
+              "shadow": {
+                "type": "text",
+                "fields": {
+                  "TEXT": "abc"
+                }
+              }
+            }
+          }
+        },
+        {
+          "kind": "block",
+          "type": "text_isEmpty",
+          "inputs": {
+            "VALUE": {
+              "shadow": {
+                "type": "text",
+                "fields": {
+                  "TEXT": null
+                }
+              }
+            }
+          }
+        },
+        {
+          "kind": "block",
+          "type": "text_indexOf",
+          "inputs": {
+            "VALUE": {
+              "block": {
+                "type": "variables_get",
+                "fields": {
+                  "VAR": "{textVariable}"
+                }
+              }
+            },
+            "FIND": {
+              "shadow": {
+                "type": "text",
+                "fields": {
+                  "TEXT": "abc"
+                }
+              }
+            }
+          }
+        },
+        {
+          "kind": "block",
+          "type": "text_charAt",
+          "inputs": {
+            "VALUE": {
+              "block": {
+                "type": "variables_get",
+                "fields": {
+                  "VAR": "{textVariable}"
+                }
+              }
+            }
+          }
+        },
+        {
+          "kind": "block",
+          "type": "text_getSubstring",
+          "inputs": {
+            "STRING": {
+              "block": {
+                "type": "variables_get",
+                "fields": {
+                  "VAR": "{textVariable}"
+                }
+              }
+            }
+          }
+        },
+        {
+          "kind": "block",
+          "type": "text_changeCase",
+          "inputs": {
+            "TEXT": {
+              "shadow": {
+                "type": "text",
+                "fields": {
+                  "TEXT": "abc"
+                }
+              }
+            }
+          }
+        },
+        {
+          "kind": "block",
+          "type": "text_trim",
+          "inputs": {
+            "TEXT": {
+              "shadow": {
+                "type": "text",
+                "fields": {
+                  "TEXT": "abc"
+                }
+              }
+            }
+          }
+        },
+        {
+          "kind": "block",
+          "type": "text_print",
+          "inputs": {
+            "TEXT": {
+              "shadow": {
+                "type": "text",
+                "fields": {
+                  "TEXT": "abc"
+                }
+              }
+            }
+          }
+        },
+        {
+          "kind": "block",
+          "type": "text_prompt_ext",
+          "inputs": {
+            "TEXT": {
+              "shadow": {
+                "type": "text",
+                "fields": {
+                  "TEXT": "abc"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "categorystyle": "text_category"
+    },
+    {
+      "kind": "category",
+      "name": "Lists",
+      "contents": [
+        {
+          "kind": "block",
+          "type": "lists_create_with",
+          "extraState": {
+            "itemCount": "0"
+          }
+        },
+        {
+          "kind": "block",
+          "type": "lists_create_with"
+        },
+        {
+          "kind": "block",
+          "type": "lists_repeat",
+          "inputs": {
+            "NUM": {
+              "shadow": {
+                "type": "math_number",
+                "fields": {
+                  "NUM": "5"
+                }
+              }
+            }
+          }
+        },
+        {
+          "kind": "block",
+          "type": "lists_length"
+        },
+        {
+          "kind": "block",
+          "type": "lists_isEmpty"
+        },
+        {
+          "kind": "block",
+          "type": "lists_indexOf",
+          "inputs": {
+            "VALUE": {
+              "block": {
+                "type": "variables_get",
+                "fields": {
+                  "VAR": "{listVariable}"
+                }
+              }
+            }
+          }
+        },
+        {
+          "kind": "block",
+          "type": "lists_getIndex",
+          "inputs": {
+            "VALUE": {
+              "block": {
+                "type": "variables_get",
+                "fields": {
+                  "VAR": "{listVariable}"
+                }
+              }
+            }
+          }
+        },
+        {
+          "kind": "block",
+          "type": "lists_setIndex",
+          "inputs": {
+            "LIST": {
+              "block": {
+                "type": "variables_get",
+                "fields": {
+                  "VAR": "{listVariable}"
+                }
+              }
+            }
+          }
+        },
+        {
+          "kind": "block",
+          "type": "lists_getSublist",
+          "inputs": {
+            "LIST": {
+              "block": {
+                "type": "variables_get",
+                "fields": {
+                  "VAR": "{listVariable}"
+                }
+              }
+            }
+          }
+        },
+        {
+          "kind": "block",
+          "type": "lists_split",
+          "inputs": {
+            "DELIM": {
+              "shadow": {
+                "type": "text",
+                "fields": {
+                  "TEXT": ","
+                }
+              }
+            }
+          }
+        },
+        {
+          "kind": "block",
+          "type": "lists_sort"
+        }
+      ],
+      "categorystyle": "list_category"
+    },
+    {
+      "kind": "category",
+      "name": "Colour",
+      "contents": [
+        {
+          "kind": "block",
+          "type": "colour_picker"
+        },
+        {
+          "kind": "block",
+          "type": "colour_random"
+        },
+        {
+          "kind": "block",
+          "type": "colour_rgb",
+          "inputs": {
+            "RED": {
+              "shadow": {
+                "type": "math_number",
+                "fields": {
+                  "NUM": "100"
+                }
+              }
+            },
+            "GREEN": {
+              "shadow": {
+                "type": "math_number",
+                "fields": {
+                  "NUM": "50"
+                }
+              }
+            },
+            "BLUE": {
+              "shadow": {
+                "type": "math_number",
+                "fields": {
+                  "NUM": "0"
+                }
+              }
+            }
+          }
+        },
+        {
+          "kind": "block",
+          "type": "colour_blend",
+          "inputs": {
+            "COLOUR1": {
+              "shadow": {
+                "type": "colour_picker",
+                "fields": {
+                  "COLOUR": "#ff0000"
+                }
+              }
+            },
+            "COLOUR2": {
+              "shadow": {
+                "type": "colour_picker",
+                "fields": {
+                  "COLOUR": "#3333ff"
+                }
+              }
+            },
+            "RATIO": {
+              "shadow": {
+                "type": "math_number",
+                "fields": {
+                  "NUM": "0.5"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "categorystyle": "colour_category"
+    },
+    {
+      "kind": "category",
+      "name": "Functions",
+      "colour": "%{BKY_PROCEDURES_HUE}",
+      "custom": "PROCEDURE"
+    },
+    {
+      "kind": "sep"
+    },
+    {
+      "kind": "category",
+      "name": "Variables",
+      "contents": [],
+      "custom": "VARIABLE",
+      "categorystyle": "variable_category"
+    },
+    {
+      "kind": "category",
+      "name": "Functions",
+      "contents": [],
+      "custom": "PROCEDURE",
+      "categorystyle": "procedure_category"
+    }
+  ]
+}
+
+
+// {
+//   "kind": "category",
+//   "name": "js-Liste",
+//   "colour": "%{BKY_LISTS_HUE}",
+//   "contents": [
+//     {"kind": "block", "type": "lists_create_with"},
+//     {"kind": "block", "type": "lists_repeat"},
+//     {"kind": "block", "type": "lists_length"},
+//     {"kind": "block", "type": "lists_isEmpty"},
+//     {"kind": "block", "type": "lists_indexOf"},
+//     {"kind": "block", "type": "lists_getIndex"},
+//     {"kind": "block", "type": "lists_setIndex"},
+//     {"kind": "block", "type": "lists_getSublist"},
+//     {"kind": "block", "type": "lists_split"},
+//     {"kind": "block", "type": "lists_sort"},
+//     {"kind": "block", "type": "lists_reverse"}
+//   ]
+// },
+
+// {
+//   "kind": "category",
+//   "name": "ADT Stapel",
+//   "colour": "#92967D",
+//   "contents": [
+//     {"kind": "block", "type": "adt_stack_neu"},
+//     {"kind": "block", "type": "adt_stack_isEmpty"},
+//     {"kind": "block", "type": "adt_stack_top"},
+//     {"kind": "block", "type": "adt_stack_push"},
+//     {"kind": "block", "type": "adt_stack_pop"},
+//     {"kind": "block", "type": "adt_stack_getStack"}
+//   ]
+// },
+// {
+//   "kind": "category",
+//   "name": "ADT Schlange",
+//   "colour": "#6E7C7C",
+//   "contents": [
+//     {"kind": "block", "type": "adt_queue_neu"},
+//     {"kind": "block", "type": "adt_queue_isEmpty"},
+//     {"kind": "block", "type": "adt_queue_head"},
+//     {"kind": "block", "type": "adt_queue_enqueue"},
+//     {"kind": "block", "type": "adt_queue_dequeue"},
+//     {"kind": "block", "type": "adt_queue_getQueue"}
+//   ]
+// },
+// {
+//   "kind": "category",
+//   "name": "ADT Dyn. Reihung",
+//   "colour": "#435560",
+//   "contents": [
+//     {"kind": "block", "type": "adt_dynArray_neu"},
+//     {"kind": "block", "type": "adt_dynArray_isEmpty"},
+//     {"kind": "block", "type": "adt_dynArray_getItem"},
+//     {"kind": "block", "type": "adt_dynArray_append"},
+//     {"kind": "block", "type": "adt_dynArray_insertAt"},
+//     {"kind": "block", "type": "adt_dynArray_setItem"},
+//     {"kind": "block", "type": "adt_dynArray_delete"},
+//     {"kind": "block", "type": "adt_dynArray_getLength"},
+//     {"kind": "block", "type": "adt_dynArray_getDynArray"}
+//   ]
+// },
+// {
+//   "kind": "category",
+//   "name": "ADT BinTree",
+//   "colour": "#55414b",
+//   "contents": [
+//     {"kind": "block", "type": "adt_binaerBaum_neu"},
+//     {"kind": "block", "type": "adt_binaerBaum_inhalteinfuegen"},
+//     {"kind": "block", "type": "adt_binaerBaum_inhaltentfernen"},
+//     {"kind": "block", "type": "adt_binaerBaum_maxTiefe"},
+//     {"kind": "block", "type": "adt_binaerBaum_gewichten"},
+//     {"kind": "block", "type": "adt_binaerBaum_bDrucker"}
+//   ]
+// }
+
+// {
+//   "kind": "category",
+//   "name": "OOP",
+//   "colour": "#d2b48c",
+//   "contents": [
+//     {"kind": "block", "type": "klasse_anlegen"},
+//     {"kind": "block", "type": "klasse_attribut"},
+//     {"kind": "block", "type": "klasse_getattribut"},
+//     {"kind": "block", "type": "klasse_methode"},
+//     {"kind": "block", "type": "methode_parameter"},
+//     {"kind": "block", "type": "methode_getparameter"},
+//     {"kind": "block", "type": "objekt_anlegen"},
+//     {"kind": "block", "type": "objekt_methode_aufrufen"},
+//     {"kind": "block", "type": "objekt_wert"},
+//     {"kind": "block", "type": "attribut_aendern"}
+//   ]
+// }
