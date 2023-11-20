@@ -98,8 +98,8 @@
           </div>
           <div class="row">
             <div class="container-fluid" style="min-width: 350px">
-              <button id="p5Run" type="button" class="btn btn-sm btn-outline-primary me-1 mt-2 mb-2"><i class="bi bi-play-fill"></i>&nbsp;&nbsp;Code ausführen</button>
-              <button id="p5loeschen" type="button" class="btn btn-sm btn-outline-primary me-1 mt-2 mb-2"><i class="bi bi-arrow-clockwise"></i>&nbsp;&nbsp;Programm löschen</button>
+              <button id="p5Run" type="button" class="btn btn-sm btn-outline-primary me-1 mt-2 mb-2"><i class="bi bi-play-fill"></i>&nbsp;&nbsp;Run</button>
+              <button id="p5loeschen" type="button" class="btn btn-sm btn-outline-primary me-1 mt-2 mb-2" style="font-size: 0.6em;"><i class="bi bi-arrow-clockwise"></i>&nbsp;&nbsp;Delete all</button>
             </div>
           </div>
           <div class="row">
@@ -124,13 +124,13 @@
     <form class="d-flex">
       <div class="input-group input-group-sm">
         <input id="p5saveDateiname" type="text" class="form-control" aria-label="Dateiname" aria-describedby="p5Save">
-        <button id="p5Save" class="btn btn-outline-secondary" type="button"><i class="bi bi-download"></i> Speichern</button>
+        <button id="p5Save" class="btn btn-outline-secondary" type="button"><i class="bi bi-download"></i> Save</button>
       </div>
     </form>
     <form class="d-flex">
       <div class="input-group input-group-sm">
         <label class="btn btn-outline-secondary btn-sm">
-          <i class="bi bi-upload"></i> Programm laden <input type="file" accept=".p5xml" id="p5Dateiwahl" hidden>
+          <i class="bi bi-upload"></i> Load Program <input type="file" accept=".p5xml" id="p5Dateiwahl" hidden>
         </label>
       </div>
     </form>
