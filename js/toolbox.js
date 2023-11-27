@@ -1027,11 +1027,35 @@ function number(x) {
     "shadow": {
       "type": "math_number",
       "fields": {
-        "NUM": x
+        "NUM": x ?? 0
       }
     }
   }
 }
+
+function string(x) {
+  return {
+    "shadow": {
+      "type": "text",
+      "fields": {
+        "TEXT": x
+      }
+    }
+  }
+}
+
+function color(x) {
+  return {
+    "shadow": {
+      "type": "colour_picker",
+      "fields": {
+        "COLOUR": x ?? "#000000"
+      }
+    }
+  }
+}
+
+
 
 // https://github.com/google/blockly/issues/4464#issuecomment-1261879532
 var NewToolbox = {
@@ -1988,8 +2012,27 @@ var NewToolbox = {
       "contents": [],
       "custom": "PROCEDURE",
       "categorystyle": "procedure_category"
+    },
+
+    {
+      "kind": "category",
+      "name": "Brushes",
+      "colour": "#92967D",
+      "contents": [
+        {"kind": "block", "type": "brush_set", "inputs": {
+          name: string("hb"),
+          color: color("#000000"),
+          weight: number(1)
+        }},
+        {"kind": "block", "type": "brush_flowline", "inputs": {
+          x: number(),
+          y: number(),
+          length: number(),
+          direction: number(),
+        }},
+      ]
     }
-  ]
+  ],
 }
 
 
