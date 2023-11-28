@@ -130,7 +130,8 @@ function updateP5() {
         $('#loggerDiv').removeClass('alert alert-light').addClass('alert alert-danger');
         $("#loggerDiv").css("max-width", "400px");
         let text01 = '<strong>There is an error in the code:<\/strong><br><br>' + e.toString() + '<hr>With "right click -> undo" you can undo your latest changes.'
-        document.getElementById('loggerDiv').innerHTML = text01;        
+        document.getElementById('loggerDiv').innerHTML = text01;
+        console.error(e);
     }
     let linksProzent = (canvasWidth+25)/$(window).width() * 100;
     let rechtsProzent = 100-linksProzent;

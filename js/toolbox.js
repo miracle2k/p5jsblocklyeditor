@@ -1055,6 +1055,39 @@ function color(x) {
   }
 }
 
+/**
+ * Return a toolbox entry for the given block id with default defaults for 
+ * each field.
+ */
+function block(id) {
+  const blockDef = Blocks[id];
+  const inputs = {};
+  for (const [name, dataType] of Object.entries(blockDef.fields ?? {})) {
+    let def;
+    switch (dataType) {
+      case "Number":
+        def = number();
+        break;
+      case "String":
+        def = string();
+        break;
+      case "Colour":
+        def = color();
+        break;
+      default:
+        continue;
+    }
+
+    inputs[name] = def;
+  }
+
+  return {
+    "kind": "block", 
+    "type": id, 
+    "inputs": inputs
+  }
+}
+
 
 
 // https://github.com/google/blockly/issues/4464#issuecomment-1261879532
@@ -2019,17 +2052,11 @@ var NewToolbox = {
       "name": "Brushes",
       "colour": "#92967D",
       "contents": [
-        {"kind": "block", "type": "brush_set", "inputs": {
-          name: string("hb"),
-          color: color("#000000"),
-          weight: number(1)
-        }},
-        {"kind": "block", "type": "brush_flowline", "inputs": {
-          x: number(),
-          y: number(),
-          length: number(),
-          direction: number(),
-        }},
+        block("brush_set"),
+        block("brush_flowline"),
+        block("brush_stroke"),
+        block("brush_nostroke"),
+        block("brush_strokeweight"),
       ]
     }
   ],

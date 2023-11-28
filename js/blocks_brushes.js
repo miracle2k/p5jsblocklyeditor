@@ -1,18 +1,25 @@
+// To finish support for this we need https://github.com/acamposuribe/p5.brush/issues/13
+// config: https://github.com/acamposuribe/p5.brush#stroke-operations
+
+var Blocks = {};
+
 function registerBlock(name, data) {
   Blockly.Blocks[name] = {
     init: function () {
       this.appendDummyInput().appendField(data.name);
-      for (const [key, value] of Object.entries(data.fields)) {
+      for (const [key, value] of Object.entries(data.fields ?? {})) {
         this.appendValueInput(key).setCheck(value).appendField(key);
       }
       this.setInputsInline(data.isInline ?? true);
-      this.setPreviousStatement(data.allowPrevious ?? false, null);
-      this.setNextStatement(data.allowNext ?? false, null);
+      this.setPreviousStatement(data.allowPrevious ?? true, null);
+      this.setNextStatement(data.allowNext ?? true, null);
       if (data.color) { this.setColour(data.color); }
       if (data.tooltip) { this.setTooltip(data.tooltip); }
       if (data.helpUrl) { this.setHelpUrl(data.helpUrl); }
     },
   };
+
+  Blocks[name] = data;
 }
 
 function defineJS(name, callback) {
@@ -24,11 +31,19 @@ function defineJS(name, callback) {
   }
 }
 
-registerBlock("brush_set", {
+function registerFunctionCall(name, funcname, data) {
+  registerBlock(name, data);
+  defineJS(name, function ({valueToCode}) {
+    const args = Object.keys(data.fields).map((key) => valueToCode(key));
+    return `${funcname}(${args.join(", ")});\n`;
+  });
+}
+
+/////////////////////// Stroke Operations
+
+registerFunctionCall("brush_set", "brush.set", {
   name: "Pick Brush with Options",
   tooltip: "Pick Brush with Options",
-  allowPrevious: true,
-  allowNext: true,
   fields: {
     name: "String",
     color: "Colour",
@@ -36,24 +51,45 @@ registerBlock("brush_set", {
   }
 });
 
-defineJS("brush_set", function ({valueToCode}) {
-  return `brush.set(${valueToCode("name")}, ${valueToCode("color")}, ${valueToCode("weight")});\n`;    
+registerFunctionCall("brush_pick", "brush.pick", {
+  name: "Pick Brush",
+  tooltip: "Pick Brush with default options",
+  fields: {
+    name: "String"
+  }
 });
 
+registerFunctionCall("brush_stroke", "brush.stroke", {
+  name: "Set Brush Stroke Color",
+  tooltip: "Sets the color of the current brush.",
+  fields: {
+    color: "Colour"
+  }
+});
 
-registerBlock("brush_flowline", {
+registerFunctionCall("brush_nostroke", "brush.noStroke", {
+  name: "Disable Brush Stroke Color",
+  tooltip: "Removes any brush stroke color" 
+});
+
+registerFunctionCall("brush_strokeweight", "brush.strokeWeight", {
+  name: "Set Brush Stroke Weight",
+  tooltip: "Sets the weight of the brush stroke",
+  fields: {
+    weight: "Number"
+  }
+});
+
+/////////////////////// stroke
+
+
+registerFunctionCall("brush_flowline", "brush.flowLine", {
   name: "Flowline",
   tooltip: "Draw a line following the flow field",
-  allowPrevious: true,
-  allowNext: true,
   fields: {
     x: "Number",
     y: "Number",
     length: "Number",
     direction: "Number",
   }
-});
-
-defineJS("brush_flowline", function ({valueToCode}) {
-  return `brush.flowLine(${valueToCode("x")}, ${valueToCode("y")}, ${valueToCode("length")}, ${valueToCode("direction")});\n`;    
 });

@@ -27,7 +27,7 @@ Blockly.JavaScript['setup'] = function(block) {
   var number_hoehe = block.getFieldValue('canvasHeight');
   var statements_do = Blockly.JavaScript.statementToCode(block, 'do');
 //var value_varName = Blockly.JavaScript.valueToCode(block, 'canvasVariable', Blockly.JavaScript.ORDER_ATOMIC);  
-  var code = 'p5sketch.setup = function() {\n  p5sketch.createCanvas(' + number_breite + ', ' + number_hoehe + ');\n' + statements_do + '};\n';
+  var code = 'p5sketch.setup = function() {\n  p5sketch.createCanvas(' + number_breite + ', ' + number_hoehe + ',  "WEBGL");\n' + statements_do + '};\n';
   return code;
 };
 
