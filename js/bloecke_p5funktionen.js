@@ -2,39 +2,42 @@
 // Pt 2021 - MIT-License
 
 //Category: p5-Functions
-Blockly.Blocks['setup'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField("setup()");
-    this.appendDummyInput()
-        .appendField("width")
-        .appendField(new Blockly.FieldNumber(startWidth, 0, maxKoord, 1), "canvasWidth")
-        .appendField("height")
-        .appendField(new Blockly.FieldNumber(startWidth, 0, maxKoord, 1), "canvasHeight");
-    this.setInputsInline(true);
-// this.setPreviousStatement(false, null);
-    // this.setNextStatement(true, null);   
-    this.appendStatementInput("do")
-        .setCheck(null);
-    this.setColour(farbep5SetupDraw);
- this.setTooltip("The setup() function is executed once when the program starts.");
- this.setHelpUrl("https://p5js.org/reference/#/p5/setup");
-  }
-};
 
-Blockly.JavaScript['setup'] = function(block) {
-  var number_breite = block.getFieldValue('canvasWidth');
-  var number_hoehe = block.getFieldValue('canvasHeight');
-  var statements_do = Blockly.JavaScript.statementToCode(block, 'do');
-//var value_varName = Blockly.JavaScript.valueToCode(block, 'canvasVariable', Blockly.JavaScript.ORDER_ATOMIC);  
-  var code = `p5sketch.setup = function() {
-  p5sketch.createCanvas(${number_breite}, ${number_hoehe}, p5sketch.WEBGL);
-  brush.load(p5sketch, true);
-  p5sketch.translate(-p5sketch.width/2,-p5sketch.height/2)
+var color = "#ed225d";
+
+registerBlock("p5_setup", {
+  name: "setup()",
+  color,
+  tooltip: "The setup() function is executed once when the program starts.",
+  helpUrl: "https://p5js.org/reference/#/p5/setup",
+  fields: {
+    width: "Number",
+    height: "Number",
+    mode: {
+      '2D': "p5sketch.P2D",
+      'WebGL': "p5sketch.WEBGL",
+    }
+  },
+  allowStatements: true,
+});
+
+defineJS("p5_setup", ({valueToCode, block}) => {
+  const width = valueToCode("width");
+  const height = valueToCode("height");
+  const mode = valueToCode("mode");
+
+  const statements_do = Blockly.JavaScript.statementToCode(block, 'do');
+  
+  return `p5sketch.setup = function() {
+  p5sketch.createCanvas(${width}, ${height}, ${mode});
+  // Make this a separate function
+  // Currently the lib requires load to be called
+  //brush.load(p5sketch, true);
+  //p5sketch.translate(-p5sketch.width/2,-p5sketch.height/2);
+
 ${statements_do}
 };`;
-  return code;
-};
+});
 
 Blockly.Blocks['draw'] = {
   init: function() {

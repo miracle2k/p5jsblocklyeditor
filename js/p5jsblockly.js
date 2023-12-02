@@ -109,20 +109,15 @@ var myp5;
 
 function updateP5() {
     let code = Blockly.JavaScript.workspaceToCode(workspace);
-    var myblocks = Blockly.mainWorkspace.getAllBlocks()
-    for(var i = 0; i < myblocks.length; i++){
-      if(myblocks[i].type == 'setup'){
-        canvasWidth = myblocks[i].getFieldValue('canvasWidth');
-        canvasHeight = myblocks[i].getFieldValue('canvasHeight');
-      }
-    }
-    document.getElementById('p5jsContainer').style.width = canvasWidth;
-    document.getElementById('p5jsContainer').style.height = canvasHeight;    
-    document.getElementById('p5jsContainer').setAttribute("style", "width: " + canvasWidth + "px; height: " + canvasHeight + "px;");
+    //var myblocks = Blockly.mainWorkspace.getAllBlocks()
+  
+    // remove old
     document.getElementById('p5jsContainer').innerHTML = "";
     if (myp5) {
       myp5.remove();
     }
+
+    // add new
     try {
         var sketch = new Function("p5sketch", code);
         myp5 = new p5(sketch, 'p5jsContainer'); 
@@ -133,6 +128,15 @@ function updateP5() {
         document.getElementById('loggerDiv').innerHTML = text01;
         console.error(e);
     }
+
+    // autosize
+    const canvas = document.querySelector('#defaultCanvas0');
+    const canvasWidth = canvas.width / 2;
+    const canvasHeight = canvas.height / 2;
+    document.getElementById('p5jsContainer').style.width = canvasWidth;
+    document.getElementById('p5jsContainer').style.height = canvasHeight;    
+    document.getElementById('p5jsContainer').setAttribute("style", "width: " + canvasWidth + "px; height: " + canvasHeight + "px;");
+
     let linksProzent = (canvasWidth+25)/$(window).width() * 100;
     let rechtsProzent = 100-linksProzent;
     splitInstance.setSizes([linksProzent, rechtsProzent]);

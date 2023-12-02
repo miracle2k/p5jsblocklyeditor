@@ -1105,17 +1105,10 @@ var NewToolbox = {
       "name": "p5 Structure",
       "colour": "#929292",
       "contents": [
+        block('p5_setup'),
         {
           "kind": "block",
-          "type": "setup",
-          "fields": {
-            "canvasVariable": {
-              "type": "text",
-              "fields": {
-                "TEXT": "sdf"
-              }
-            }
-          }
+          "type": "p5_setup",          
         },
         {
           "kind": "block",
