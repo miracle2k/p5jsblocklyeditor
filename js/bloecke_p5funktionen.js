@@ -27,7 +27,12 @@ Blockly.JavaScript['setup'] = function(block) {
   var number_hoehe = block.getFieldValue('canvasHeight');
   var statements_do = Blockly.JavaScript.statementToCode(block, 'do');
 //var value_varName = Blockly.JavaScript.valueToCode(block, 'canvasVariable', Blockly.JavaScript.ORDER_ATOMIC);  
-  var code = 'p5sketch.setup = function() {\n  p5sketch.createCanvas(' + number_breite + ', ' + number_hoehe + ',  "WEBGL");\n' + statements_do + '};\n';
+  var code = `p5sketch.setup = function() {
+  p5sketch.createCanvas(${number_breite}, ${number_hoehe}, p5sketch.WEBGL);
+  brush.load(p5sketch, true);
+  p5sketch.translate(-p5sketch.width/2,-p5sketch.height/2)
+${statements_do}
+};`;
   return code;
 };
 
@@ -45,7 +50,10 @@ Blockly.Blocks['draw'] = {
 
 Blockly.JavaScript['draw'] = function(block) {
   var statements_do = Blockly.JavaScript.statementToCode(block, 'do');
-  var code = 'p5sketch.draw = function() {\n' + statements_do + '};\n';
+  var code = `p5sketch.draw = function() {
+  p5sketch.translate(-p5sketch.width/2,-p5sketch.height/2);
+${statements_do}
+};`;
   return code;
 };
 

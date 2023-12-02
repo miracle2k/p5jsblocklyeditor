@@ -1059,14 +1059,14 @@ function color(x) {
  * Return a toolbox entry for the given block id with default defaults for 
  * each field.
  */
-function block(id) {
+function block(id, opts) {
   const blockDef = Blocks[id];
   const inputs = {};
   for (const [name, dataType] of Object.entries(blockDef.fields ?? {})) {
     let def;
     switch (dataType) {
       case "Number":
-        def = number();
+        def = number(blockDef.defaults?.[name]);
         break;
       case "String":
         def = string();
@@ -1079,6 +1079,12 @@ function block(id) {
     }
 
     inputs[name] = def;
+  }
+
+  if (opts?.inputs) {
+    for (const [name, def] of Object.entries(opts.inputs)) {
+      inputs[name] = def;
+    }
   }
 
   return {
@@ -1179,7 +1185,10 @@ var NewToolbox = {
         {"kind": "block", "type": "translate_var"},
         {"kind": "block", "type": "rotate_var"},
         {"kind": "block", "type": "scale_var"},
-        {"kind": "block", "type": "p5_button"}
+        {"kind": "block", "type": "p5_button"},
+        block("p5_degrees"),
+        block("p5_radians"),
+        block("p5_angleMode"),
       ]
     },
 
@@ -2053,10 +2062,16 @@ var NewToolbox = {
       "colour": "#92967D",
       "contents": [
         block("brush_set"),
-        block("brush_flowline"),
+        block("brush_pick"),      
         block("brush_stroke"),
         block("brush_nostroke"),
         block("brush_strokeweight"),
+
+        block("brush_fill"),
+
+        block("brush_line"),
+        block("brush_flowline"),
+        block("brush_rect"),
       ]
     }
   ],

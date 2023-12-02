@@ -1,44 +1,6 @@
 // To finish support for this we need https://github.com/acamposuribe/p5.brush/issues/13
 // config: https://github.com/acamposuribe/p5.brush#stroke-operations
 
-var Blocks = {};
-
-function registerBlock(name, data) {
-  Blockly.Blocks[name] = {
-    init: function () {
-      this.appendDummyInput().appendField(data.name);
-      for (const [key, value] of Object.entries(data.fields ?? {})) {
-        this.appendValueInput(key).setCheck(value).appendField(key);
-      }
-      this.setInputsInline(data.isInline ?? true);
-      this.setPreviousStatement(data.allowPrevious ?? true, null);
-      this.setNextStatement(data.allowNext ?? true, null);
-      if (data.color) { this.setColour(data.color); }
-      if (data.tooltip) { this.setTooltip(data.tooltip); }
-      if (data.helpUrl) { this.setHelpUrl(data.helpUrl); }
-    },
-  };
-
-  Blocks[name] = data;
-}
-
-function defineJS(name, callback) {
-  Blockly.JavaScript[name] = function (block) {
-    return callback({
-      block,
-      valueToCode: (name) => Blockly.JavaScript.valueToCode(block, name, Blockly.JavaScript.ORDER_ATOMIC),
-    });
-  }
-}
-
-function registerFunctionCall(name, funcname, data) {
-  registerBlock(name, data);
-  defineJS(name, function ({valueToCode}) {
-    const args = Object.keys(data.fields).map((key) => valueToCode(key));
-    return `${funcname}(${args.join(", ")});\n`;
-  });
-}
-
 /////////////////////// Stroke Operations
 
 registerFunctionCall("brush_set", "brush.set", {
@@ -80,8 +42,32 @@ registerFunctionCall("brush_strokeweight", "brush.strokeWeight", {
   }
 });
 
-/////////////////////// stroke
+/////////////////////// Fill
 
+registerFunctionCall("brush_fill", "brush.fill", {
+  name: "Set Brush Fill Color",
+  tooltip: "Sets the fill color for subseuqent shapes.",
+  fields: {
+    color: "Colour",
+    alpha: "Number"
+  },
+  defaults: {
+    alpha: 100
+  }
+});
+
+/////////////////////// Geometry
+
+registerFunctionCall("brush_line", "brush.line", {
+  name: "Line",
+  tooltip: "Draw a line",
+  fields: {
+    x1: "Number",
+    y1: "Number",
+    x2: "Number",
+    y2: "Number",
+  }
+});
 
 registerFunctionCall("brush_flowline", "brush.flowLine", {
   name: "Flowline",
@@ -91,5 +77,17 @@ registerFunctionCall("brush_flowline", "brush.flowLine", {
     y: "Number",
     length: "Number",
     direction: "Number",
+  }
+});
+
+
+registerFunctionCall("brush_rect", "brush.rect", {
+  name: "Rect",
+  tooltip: "Draw a rect",
+  fields: {
+    x: "Number",
+    y: "Number",
+    w: "Number",
+    h: "Number",
   }
 });
