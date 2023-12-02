@@ -216,8 +216,9 @@ function p5Init() {
     document.getElementById('p5jsContainer').style.width = breite2;
     onresize();
     viewCode();
-    updateP5();
-    loadTutorial('tutorials/inhalt.html');
+    
+    //updateP5();
+    //loadTutorial('tutorials/inhalt.html');
 }
 
 document.getElementById('p5Run').onclick = function() {
