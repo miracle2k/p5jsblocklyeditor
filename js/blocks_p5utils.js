@@ -31,3 +31,18 @@ registerFunctionCall("p5_angleMode", 'p5sketch.angleMode', {
     }
   }
 });
+
+registerFunctionCall("p5_rectMode", 'p5sketch.rectMode', {
+  name: "Rect Mode",
+  color,
+  tooltip: "Switch between degrees and radians",
+  helpUrl: "https://p5js.org/reference/#/p5/rectMode",
+  fields: {
+    mode: {
+      'Corner': "p5sketch.CORNER",
+      'Corners': "p5sketch.CORNERS",
+      'Center': "p5sketch.CENTER",
+      'Radius': "p5sketch.RADIUS",
+    }
+  }
+});

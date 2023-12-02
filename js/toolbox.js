@@ -1189,6 +1189,7 @@ var NewToolbox = {
         block("p5_degrees"),
         block("p5_radians"),
         block("p5_angleMode"),
+        block("p5_rectMode"),
       ]
     },
 

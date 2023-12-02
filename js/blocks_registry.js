@@ -19,7 +19,7 @@ function registerBlock(name, data) {
       }
 
       this.setInputsInline(data.isInline ?? true);
-      this.setOutput(data.hasOutput ?? true, null)
+      this.setOutput(data.hasOutput ?? false, null)
       this.setPreviousStatement(data.allowPrevious ?? !data.hasOutput, null);
       this.setNextStatement(data.allowNext ?? !data.hasOutput, null);      
       if (data.color) { this.setColour(data.color); }
