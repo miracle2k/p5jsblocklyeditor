@@ -1171,6 +1171,7 @@ var NewToolbox = {
             "z2": number(0),
           }
         },
+        block("p5_noiseSeed"),
         {"kind": "block", "type": "p5_noise", 
           "inputs": {
             "input": number(0),

@@ -9,6 +9,15 @@ registerFunctionCall("p5_randomSeed", "p5sketch.randomSeed", {
   }
 });
 
+registerFunctionCall("p5_noiseSeed", "p5sketch.noiseSeed", {
+  name: "Noise Seed",
+  color,
+  tooltip: "Set the seed that determines the noise numbers",
+  fields: {
+    seed: "Number"
+  }
+});
+
 registerFunctionCall("p5_degrees", "p5sketch.degrees", {
   name: "To Degrees",
   color,
