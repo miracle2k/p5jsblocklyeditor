@@ -150,10 +150,10 @@ Blockly.Blocks['rect_var'] = {
         .appendField("y =");
     this.appendValueInput("breite")
         .setCheck("Number")
-        .appendField("height =");
+        .appendField("width =");
     this.appendValueInput("hoehe")
         .setCheck("Number")
-        .appendField("width =");        
+        .appendField("height =");        
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
