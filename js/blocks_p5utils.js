@@ -1,5 +1,14 @@
 var color = "#da5a73";
 
+registerFunctionCall("p5_randomSeed", "p5sketch.randomSeed", {
+  name: "Random Seed",
+  color,
+  tooltip: "Set the seed that determines the sequence of random numbers",
+  fields: {
+    seed: "Number"
+  }
+});
+
 registerFunctionCall("p5_degrees", "p5sketch.degrees", {
   name: "To Degrees",
   color,

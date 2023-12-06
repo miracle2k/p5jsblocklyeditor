@@ -1164,6 +1164,7 @@ var NewToolbox = {
       "contents": [
         {"kind": "block", "type": "moduloframe"},
         {"kind": "block", "type": "framerate_number"},
+        block("p5_randomSeed"),
         {"kind": "block", "type": "p5_random", 
           "inputs": {
             "z1": number(0),

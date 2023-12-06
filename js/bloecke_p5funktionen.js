@@ -54,7 +54,7 @@ Blockly.Blocks['draw'] = {
 Blockly.JavaScript['draw'] = function(block) {
   var statements_do = Blockly.JavaScript.statementToCode(block, 'do');
   var code = `p5sketch.draw = function() {
-  p5sketch.translate(-p5sketch.width/2,-p5sketch.height/2);
+  //p5sketch.translate(-p5sketch.width/2,-p5sketch.height/2);
 ${statements_do}
 };`;
   return code;
