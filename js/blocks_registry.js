@@ -1,5 +1,8 @@
 // Simplify the definition of blocks and fields.
 
+// Converting JSON block definitions to the imperative calls:
+// https://github.com/google/blockly/blob/a3053955d3e0889df159e139d82b6eea2b9c9c3a/core/block.ts#L1636
+
 var Blocks = {};
 
 function registerBlock(name, data) {
@@ -7,16 +10,28 @@ function registerBlock(name, data) {
     init: function () {
       this.appendDummyInput().appendField(data.name);
       for (const [key, value] of Object.entries(data.fields ?? {})) {
-        if (typeof value === "object") {
-          // this is a select box. dummy input has no "connections", just a field
+        // Note: 
+        //  appendDummyInput has no "connections", just a field.
+        //  appendValueInput can connect to other blocks.
+
+        // This is a select box. 
+        if (typeof value === "object") {          
           this.appendDummyInput(key).appendField(key).appendField(
             new Blockly.FieldDropdown(Object.entries(value)), key);
         }
+
+        // else if (value == "Var") {
+        //   this.appendDummyInput(key).appendField(key).appendField(
+        //     new Blockly.FieldVariable('isOn'), key);
+        // }
+        
         else {
           // value input means you can connect something. the field here is just the label
           this.appendValueInput(key).setCheck(value).appendField(key);
         }        
       }
+
+      data.customRegister?.(this);
 
       if (data.allowStatements) {
         this.appendStatementInput("do").setCheck(null);

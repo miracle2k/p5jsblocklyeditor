@@ -1125,7 +1125,8 @@ var NewToolbox = {
         {
           "kind": "block",
           "type": "keypressed"
-        }
+        },
+        block('qr_makeCode')
       ]
     },
 

@@ -17,6 +17,11 @@
     <script src="lib/p5js/p5.js"></script>
     <!-- <script src="lib/p5turtle/p5turtle.js"></script> -->
     <script src="lib/p5jsbrush/spectral.min.js"></script>
+    <script src="" type="module"></script>
+    <script type="module">
+      import { qr} from "./lib/qr/headless-qr.js";
+      window.qr = qr;      
+    </script>
     <!-- <script src="lib/p5jsbrush/p5jsbrush.js"></script> -->
 
 
@@ -48,6 +53,7 @@
     <script src="js/bloecke_mathe.js" defer></script>    
     <script src="js/blocks_p5utils.js" defer></script>    
     <script src="js/blocks_brushes.js" defer></script>
+    <script src="js/blocks_qr.js" defer></script>
 
     <script src="js/toolbox.js" defer></script>
 
