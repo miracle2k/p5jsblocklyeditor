@@ -34,17 +34,17 @@ defineJS("qr_makeCode", ({valueToCode, block}) => {
   const varY = Blockly.JavaScript.nameDB_.getName(block.getFieldValue('y'), "VARIABLE");
 
   return `{
-  const _l = window.qr("${text}", {
+  const _l = window.qr(${text}, {
     correction: "${valueToCode("correction")}",
     version: ${valueToCode("version")},
   });
   _l.forEach((_row, _y) => {
     _row.forEach((_value, _x) => {
-    ${varIsOn} = _value;
-    ${varX} = _x;
-    ${varY} = _y;
+      ${varIsOn} = _value;
+      ${varX} = _x;
+      ${varY} = _y;
     ${statements_do}
-    });
+      });
   });
 }`;
 });

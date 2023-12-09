@@ -26,7 +26,7 @@ var workspace = Blockly.inject(blocklyDiv, {
             collapse: true,
             comments: true,
             css: true,
-            disable: false,
+            disable: true,
             grid: {
                 spacing: 20,
                 length: 1,
