@@ -1676,7 +1676,9 @@ var NewToolbox = {
               }
             }
           }
-        }
+        },
+        block("math_min"),
+        block("math_max"),
       ],
       "categorystyle": "math_category"
     },
