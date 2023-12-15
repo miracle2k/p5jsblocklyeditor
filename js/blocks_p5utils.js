@@ -64,3 +64,14 @@ registerFunctionCall("p5_rectMode", 'p5sketch.rectMode', {
     }
   }
 });
+
+registerFunctionCall("p5_noise2d", "p5sketch.noise", {
+  name: "Noise 2D",
+  color,
+  tooltip: "Get a 2D noise value",
+  hasOutput: true,
+  fields: {
+    x: "Number",
+    y: "Number",
+  }
+});
