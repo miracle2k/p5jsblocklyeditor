@@ -2028,7 +2028,8 @@ var NewToolbox = {
               }
             }
           }
-        }
+        },
+        block('hsbToRgb')
       ],
       "categorystyle": "colour_category"
     },
