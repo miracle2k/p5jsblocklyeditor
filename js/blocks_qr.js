@@ -48,3 +48,35 @@ defineJS("qr_makeCode", ({valueToCode, block}) => {
   });
 }`;
 });
+
+////////// Below is the IDE UX integration
+
+
+let qrScannerInterval;
+
+function startStopQRCodeScanner() {
+  let canvas = document.querySelector('#defaultCanvas0');  
+
+  if (qrScannerInterval) {
+    window.clearInterval(qrScannerInterval);
+  }
+
+  qrScannerInterval = window.setInterval(() => {
+    testQRCode(canvas);
+  }, 1700);
+}
+
+function testQRCode(canvas) {  
+  const ctx = canvas.getContext("2d", {willReadFrequently: true});
+  const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+  const decoded = jsQR(imageData.data, imageData.width, imageData.height);
+  const isValid = !!decoded;
+  
+  const resultEl = document.getElementById('evaluation-result');
+  if (isValid) {
+    resultEl.innerHTML = '✅ QR Code detected';
+  }
+  else {
+    resultEl.innerHTML = '❌ No QR Code detected';
+  }
+}

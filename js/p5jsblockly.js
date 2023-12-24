@@ -107,6 +107,9 @@ Blockly.svgResize(workspace);
 
 var myp5;
 
+/**
+ * Re-run the sketch based on the current code.
+ */
 function updateP5() {
     let code = Blockly.JavaScript.workspaceToCode(workspace);
     //var myblocks = Blockly.mainWorkspace.getAllBlocks()
@@ -142,6 +145,9 @@ function updateP5() {
     splitInstance.setSizes([linksProzent, rechtsProzent]);
     onresize();
     Blockly.svgResize(workspace);
+
+    // start qr code scanning (if qr code block is used)
+    startStopQRCodeScanner();
 }
 
 function viewFlems() {
@@ -168,6 +174,9 @@ function viewCode() {
     codeDiv.innerHTML = htmlImport;
 }
 
+/**
+ * Needs to run once at document init time.
+ */
 function p5Init() {
     Blockly.mainWorkspace.clear();
     
@@ -209,6 +218,7 @@ function p5Init() {
             //Blockly.Xml.domToWorkspace(document.getElementById('startBlocks'), workspace);
         }
     }
+
     let p5jsBreite = 0.3*$(window).width();
     let breite1 = "width: " + p5jsBreite + "px";
     let breite2 = p5jsBreite + "px";
@@ -217,10 +227,14 @@ function p5Init() {
     onresize();
     viewCode();
     
+    // do NOT auto load to allow recovering from crashes
     //updateP5();
     //loadTutorial('tutorials/inhalt.html');
 }
 
+/**
+ * Run the sketch when clicking the RUN button.
+ */
 document.getElementById('p5Run').onclick = function() {
     $('#loggerDiv').removeClass('alert alert-danger').addClass('alert alert-light');
     document.getElementById('loggerDiv').innerHTML = '';
@@ -261,3 +275,8 @@ document.getElementById('flemsAnzeigen').onclick = function() {
 document.getElementById('traceAnzeigen').onclick = function() {
     window.open("blocklytrace/index.html",'_blank');
 };
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    p5Init();
+});

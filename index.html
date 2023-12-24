@@ -17,11 +17,13 @@
     <script src="lib/p5js/p5.js"></script>
     <!-- <script src="lib/p5turtle/p5turtle.js"></script> -->
     <script src="lib/p5jsbrush/spectral.min.js"></script>
-    <script src="" type="module"></script>
+
     <script type="module">
       import { qr} from "./lib/qr/headless-qr.js";
       window.qr = qr;      
     </script>
+    <script src="lib/qr/jsQR.js"></script>
+
     <!-- <script src="lib/p5jsbrush/p5jsbrush.js"></script> -->
 
 
@@ -64,7 +66,7 @@
     
 </head>
 
-<body onload = "setTimeout(p5Init, 1000)">
+<body>
 
 
 <!-- Navbar -->
@@ -115,9 +117,14 @@
             </div>
           </div>
           <div class="row">
-            <div class="container-fluid" style="min-width: 350px">
+            <div class="container-fluid" style="min-width: 350px; display: flex; padding: 0px 30px 0 10px;">
               <button id="p5Run" type="button" class="btn btn-sm btn-outline-primary me-1 mt-2 mb-2"><i class="bi bi-play-fill"></i>&nbsp;&nbsp;Run</button>
-              <button id="p5loeschen" type="button" class="btn btn-sm btn-outline-primary me-1 mt-2 mb-2" style="font-size: 0.6em;"><i class="bi bi-arrow-clockwise"></i>&nbsp;&nbsp;Delete all</button>
+              <button id="p5loeschen" type="button" class="btn btn-sm btn-outline-primary me-1 mt-2 mb-2" style="font-size: 0.6em;">
+                <i class="bi bi-arrow-clockwise"></i>&nbsp;&nbsp;Delete all</button>
+              <span style="flex: 1;"></span>
+              <span id="evaluation-result">
+                
+              </span>
             </div>
           </div>
           <div class="row">
