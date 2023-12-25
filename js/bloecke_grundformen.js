@@ -138,6 +138,24 @@ Blockly.JavaScript['triangle_var'] = function(block) {
   return code;
 };
 
+registerFunctionCall("p5_rect", "p5sketch.rect", {
+  name: "rect()",
+  color: "#e67e22",
+  tooltip: "Draw a rectangle with round corners",
+  isInline: false,
+  fields: {
+    x: "Number",
+    y: "Number",
+    w: "Number",
+    h: "Number",
+    tl: "Number",
+    tr: "Number",
+    br: "Number",
+    bl: "Number",
+  }
+});
+
+
 Blockly.Blocks['rect_var'] = {
   init: function() {
     this.appendDummyInput()

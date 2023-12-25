@@ -50,6 +50,9 @@ function registerBlock(name, data) {
   Blocks[name] = data;
 }
 
+/**
+ * Define the JS code to be generated for a block.
+ */
 function defineJS(name, callback) {
   Blockly.JavaScript[name] = function (block) {
     return callback({

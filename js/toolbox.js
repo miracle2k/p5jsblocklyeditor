@@ -1061,6 +1061,9 @@ function color(x) {
  */
 function block(id, opts) {
   const blockDef = Blocks[id];
+  if (!blockDef) {
+    throw new Error(`Unknown block ${id}`);
+  }
   const inputs = {};
   for (const [name, dataType] of Object.entries(blockDef.fields ?? {})) {
     let def;
@@ -1245,6 +1248,7 @@ var NewToolbox = {
             "hoehe": number(0),
           }
         },
+        block('p5_rect'),
         {"kind": "block", "type": "polygon"},
         {
           "kind": "block",
