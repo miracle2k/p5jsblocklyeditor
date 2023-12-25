@@ -15,6 +15,7 @@ registerBlock("qr_makeCode", {
   customRegister: (block) => {
     block.appendDummyInput('vars').appendField("with")
     .appendField(new Blockly.FieldVariable('isOn'), 'value')
+    .appendField(new Blockly.FieldVariable('moduleType'), 'moduleType')
     .appendField(new Blockly.FieldVariable('x'), 'x')
     .appendField(new Blockly.FieldVariable('y'), 'y');
   },
@@ -30,6 +31,7 @@ defineJS("qr_makeCode", ({valueToCode, block}) => {
   // There is a new version of doing this in future versions: 
   // https://github.com/google/blockly/issues/6008
   const varIsOn = Blockly.JavaScript.nameDB_.getName(block.getFieldValue('value'), "VARIABLE");
+  const varType = Blockly.JavaScript.nameDB_.getName(block.getFieldValue('moduleType'), "VARIABLE");
   const varX = Blockly.JavaScript.nameDB_.getName(block.getFieldValue('x'), "VARIABLE");
   const varY = Blockly.JavaScript.nameDB_.getName(block.getFieldValue('y'), "VARIABLE");
 
@@ -40,7 +42,8 @@ defineJS("qr_makeCode", ({valueToCode, block}) => {
   });
   _l.forEach((_row, _y) => {
     _row.forEach((_value, _x) => {
-      ${varIsOn} = _value;
+      [${varType}, ${varIsOn}] = _value;
+      console.log(${varType}, ${varIsOn});
       ${varX} = _x;
       ${varY} = _y;
     ${statements_do}
