@@ -193,7 +193,7 @@ Blockly.JavaScript['rect_var'] = function(block) {
 Blockly.Blocks['polygon'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("draw polygon")
+        .appendField("custom shape")
     this.appendStatementInput("vertices")
         .setCheck(null);
     this.setPreviousStatement(true, null);
@@ -223,13 +223,13 @@ Blockly.JavaScript['polygon'] = function(block) {
 Blockly.Blocks['vertex_var'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("Polygon: vertex");
+        .appendField("vertex()");
     this.appendValueInput("x")
         .setCheck("Number")
-        .appendField("x =");
+        .appendField("x");
     this.appendValueInput("y")
         .setCheck("Number")
-        .appendField("y =");
+        .appendField("y");
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);

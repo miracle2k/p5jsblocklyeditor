@@ -1258,6 +1258,7 @@ var NewToolbox = {
             "y": number(0),
           }
         },
+        block('p5_curveVertex'),
         {
           "kind": "block",
           "type": "p5_image_load"

@@ -75,3 +75,14 @@ registerFunctionCall("p5_noise2d", "p5sketch.noise", {
     y: "Number",
   }
 });
+
+registerFunctionCall("p5_curveVertex", "p5sketch.curveVertex", {
+  name: "curveVertex()",
+  color: "#e67e22",
+  tooltip: "Specify a polygon point, drawing a curved line",
+  hasOutput: false,
+  fields: {
+    x: "Number",
+    y: "Number",
+  }
+});
