@@ -112,6 +112,14 @@ var myp5;
  */
 function updateP5() {
     let code = Blockly.JavaScript.workspaceToCode(workspace);
+    
+
+    if (sketchHasP5BrushBlock(workspace)) {      
+      brush.installLibrary();
+    }
+    else {
+      brush.uninstallLibrary();
+    }
   
     // remove old
     document.getElementById('p5jsContainer').innerHTML = "";

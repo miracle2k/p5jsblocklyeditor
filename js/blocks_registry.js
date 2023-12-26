@@ -99,6 +99,11 @@ function findChildBlocksWithMatcher(parentBlock, matcher) {
           return;
       }
 
+      // skip if block is disabled
+      if (!currentBlock.isEnabled()) {
+          return;
+      }
+
       // Check if the current block is of the desired type
       if (matcher(currentBlock)) {
           blocksFound.push(currentBlock);

@@ -2,8 +2,8 @@
 // config: https://github.com/acamposuribe/p5.brush#stroke-operations
 
 
-function sketchHasP5BrushBlock(block) {
-  const hasBrushBlocks = findBlocksWithMatcher(block.workspace, b => {
+function sketchHasP5BrushBlock(blockOrWorkspace) {
+  const hasBrushBlocks = findBlocksWithMatcher(blockOrWorkspace.workspace || blockOrWorkspace, b => {
     if (b.type.startsWith('brush_')) {
       return true;
     }
