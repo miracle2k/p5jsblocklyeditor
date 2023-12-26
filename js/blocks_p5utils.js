@@ -86,3 +86,18 @@ registerFunctionCall("p5_curveVertex", "p5sketch.curveVertex", {
     y: "Number",
   }
 });
+
+registerFunctionCall("p5_bezierVertex", "p5sketch.bezierVertex", {
+  name: "bezierVertex()",
+  color: "#e67e22",
+  tooltip: "Specify a polygon point, drawing a bezier line",
+  hasOutput: false,
+  fields: {
+    cp1x: "Number",
+    cp1y: "Number",
+    cp2x: "Number",
+    cp2y: "Number",
+    x: "Number",
+    y: "Number",
+  }
+});

@@ -1259,6 +1259,7 @@ var NewToolbox = {
           }
         },
         block('p5_curveVertex'),
+        block('p5_bezierVertex'),
         {
           "kind": "block",
           "type": "p5_image_load"
