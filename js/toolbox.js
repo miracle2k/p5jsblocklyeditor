@@ -1062,6 +1062,34 @@ var NewToolbox = {
   ],
 }
 
+function filterToolbox(toolbox, blockTypes) {
+  // Create a new toolbox object
+  let filteredToolbox = {
+    kind: toolbox.kind,
+    contents: []
+  };
+
+  // Iterate over each category in the toolbox
+  toolbox.contents.forEach(category => {
+    if (category.kind === "category") {
+      // Filter the blocks in the category based on the blockTypes argument
+      let filteredContents = category.contents?.filter(block => {
+        return blockTypes.includes(block.type);
+      });
+
+      // Add the category to the filtered toolbox if it has any blocks left
+      if (filteredContents?.length > 0) {
+        filteredToolbox.contents.push({
+          ...category,
+          contents: filteredContents
+        });
+      }
+    }
+  });
+
+  return filteredToolbox;
+}
+
 
 // {
 //   "kind": "category",

@@ -48,7 +48,7 @@ var workspace = Blockly.inject(blocklyDiv, {
             readOnly: false,
             rtl: false,
             scrollbars: true,
-            toolbox: NewToolbox,            
+            toolbox: NewToolbox,
             toolboxPosition: 'start',            
             trashcan: true,
             sounds: true,
@@ -188,33 +188,38 @@ function viewCode() {
 /**
  * Needs to run once at document init time.
  */
-function p5Init() {
+async function p5Init() {
     Blockly.mainWorkspace.clear();
     
     Blockly.mainWorkspace.addChangeListener(() => {
       if (Blockly.mainWorkspace.isDragging()) return; // Don't update while changes are happening.
 
       // save to local storage
-      let xml = Blockly.Xml.workspaceToDom(Blockly.mainWorkspace);
-      let xml_text = Blockly.Xml.domToText(xml);
-      window.localStorage.setItem("xmlLocalStorage", xml_text);
+      let json = Blockly.serialization.workspaces.save(Blockly.mainWorkspace);
+      window.localStorage.setItem("jsonLocalStorage", JSON.stringify(json));
     });
 
 
-    let urlString = window.location.hash;
+    let urlString = window.location.hash.slice(1);
     if (urlString.length > 0) {
         try {
-            let triggerCode = urlString.substring(0, 4);
-            if (triggerCode == "#LZ=") {
-              let comressedCode = urlString.substring(4);
-              let string = LZString.decompressFromEncodedURIComponent(comressedCode);
-              let xml = Blockly.Xml.textToDom(string);
-              Blockly.Xml.domToWorkspace(Blockly.mainWorkspace, xml);              
-            }
-            if (triggerCode == "#PN=") {
-              let programmName = urlString.substring(4);
-              loadBeispielProgramm('programme/' + programmName + '.p5xml');
-            }
+          const {default: m} = await import(`./puzzles/${urlString}.js`);
+          Blockly.mainWorkspace.toolbox = filterToolbox(NewToolbox, m.blocks);
+          Blockly.mainWorkspace.updateToolbox(Blockly.mainWorkspace.toolbox);
+
+          Blockly.serialization.workspaces.load(m.code, Blockly.mainWorkspace);
+
+            // let triggerCode = urlString.substring(0, 4);
+            // if (triggerCode == "#LZ=") {
+            //   let comressedCode = urlString.substring(4);
+            //   let string = LZString.decompressFromEncodedURIComponent(comressedCode);
+            //   let xml = Blockly.Xml.textToDom(string);
+            //   Blockly.Xml.domToWorkspace(Blockly.mainWorkspace, xml);              
+            // }
+            // if (triggerCode == "#PN=") {
+            //   let programmName = urlString.substring(4);
+            //   loadBeispielProgramm('programme/' + programmName + '.p5xml');
+            // }
         }
         catch {
            //Blockly.Xml.domToWorkspace(document.getElementById('startBlocks'), workspace);
@@ -222,10 +227,14 @@ function p5Init() {
     } else {
         // load blockly workspace from local storage
         let xml = window.localStorage.getItem("xmlLocalStorage");
-        if (xml) {
+        let json =  window.localStorage.getItem("jsonLocalStorage");
+        if (json) {
+            Blockly.serialization.workspaces.load(JSON.parse(json), Blockly.mainWorkspace);
+        }
+        else if (xml) {
             let xmlDom = Blockly.Xml.textToDom(xml);
             Blockly.Xml.domToWorkspace(Blockly.mainWorkspace, xmlDom);
-        } else {
+        } else {          
             //Blockly.Xml.domToWorkspace(document.getElementById('startBlocks'), workspace);
         }
     }

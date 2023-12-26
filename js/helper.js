@@ -4,15 +4,17 @@ document.getElementById('p5saveDateiname').value = 'BlocklyCode';
 
 document.getElementById('p5Save').onclick = function() {
   try {
-    let xml = Blockly.Xml.workspaceToDom(Blockly.mainWorkspace);
-    var xml_text = Blockly.Xml.domToText(xml);
+    let json = Blockly.serialization.workspaces.save(Blockly.mainWorkspace);
+    var json_text = JSON.stringify(json, null, 4);
     let link = document.createElement('a');
     link.download = document.getElementById('p5saveDateiname').value + '.p5xml';
-    link.href = "data:application/octet-stream;utf-8," + encodeURIComponent(xml_text);
+    link.href = "data:application/octet-stream;utf-8," + encodeURIComponent(json_text);
     document.body.appendChild(link);
     link.click();
     link.remove();
-  } catch { }
+  } catch(e) {
+      console.log(e)
+   }
 };
 
 document.getElementById('URLSave').onclick = function() {
@@ -34,9 +36,19 @@ fileSelector.addEventListener('change', (event) => {
   reader.readAsText(file);
   reader.onload = function (event) {
     Blockly.mainWorkspace.clear();
-    var xml = Blockly.Xml.textToDom(event.target.result);
-    Blockly.Xml.domToWorkspace(xml, Blockly.mainWorkspace);   
-    document.getElementById('p5Dateiwahl').value = null; 
+
+    let jsonParsed;
+    try {
+      jsonParsed = JSON.parse(event.target.result);
+      Blockly.serialization.workspaces.load(jsonParsed, Blockly.mainWorkspace);
+    }
+    catch (e) {
+      // try xml 
+      var xml = Blockly.Xml.textToDom(event.target.result);
+      Blockly.Xml.domToWorkspace(xml, Blockly.mainWorkspace);         
+    }
+    
+    document.getElementById('p5Dateiwahl').value = null;    
   };  
 });
 
