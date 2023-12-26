@@ -86,3 +86,43 @@ function registerFunctionCall(name, funcname, data) {
     }
   });
 }
+
+/**
+ * Find a block with the given type within the given parent block.
+ */
+function findChildBlocksWithMatcher(parentBlock, matcher) {
+  const blocksFound = [];
+
+  // Helper function for recursion
+  function searchBlock(currentBlock) {
+      if (!currentBlock) {
+          return;
+      }
+
+      // Check if the current block is of the desired type
+      if (matcher(currentBlock)) {
+          blocksFound.push(currentBlock);
+      }
+
+      // Iterate over all child blocks
+      for (var i = 0; i < currentBlock.childBlocks_.length; i++) {
+          searchBlock(currentBlock.childBlocks_[i]);
+      }
+  }
+
+  // Start the recursion with the root block
+  searchBlock(parentBlock);
+
+  return blocksFound;
+}
+
+function findBlocksWithMatcher(workspace, matcher) {
+  const blocksFound = [];
+
+  // Iterate over all top-level blocks
+  for (var i = 0; i < workspace.topBlocks_.length; i++) {
+      blocksFound.push(...findChildBlocksWithMatcher(workspace.topBlocks_[i], matcher));
+  }
+
+  return blocksFound;
+}

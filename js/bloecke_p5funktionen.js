@@ -27,15 +27,25 @@ defineJS("p5_setup", ({valueToCode, block}) => {
   const mode = valueToCode("mode");
 
   const statements_do = Blockly.JavaScript.statementToCode(block, 'do');
-  
-  return `p5sketch.setup = function() {
-  p5sketch.createCanvas(${width}, ${height}, ${mode});
-  // Make this a separate function
-  // Currently the lib requires load to be called
-  //brush.load(p5sketch, true);
-  //p5sketch.translate(-p5sketch.width/2,-p5sketch.height/2);
 
-${statements_do}
+  const hasBrushLib = sketchHasP5BrushBlock(block);
+  let brushLibInitCode;
+  if (hasBrushLib) {
+    brushLibInitCode = `
+  // Required to use the p5js.brush library
+  brush.load(p5sketch, true);
+  p5sketch.translate(-p5sketch.width/2,-p5sketch.height/2);
+`
+  }
+
+  const setupFuncCode = [
+    `  p5sketch.createCanvas(${width}, ${height}, ${mode});`,
+    brushLibInitCode,
+    statements_do
+  ].join('\n\n')
+
+  return `p5sketch.setup = function() {
+${setupFuncCode}
 };`;
 });
 
@@ -52,10 +62,20 @@ Blockly.Blocks['draw'] = {
 };
 
 Blockly.JavaScript['draw'] = function(block) {
-  var statements_do = Blockly.JavaScript.statementToCode(block, 'do');
-  var code = `p5sketch.draw = function() {
-  //p5sketch.translate(-p5sketch.width/2,-p5sketch.height/2);
-${statements_do}
+  const hasBrushLib = sketchHasP5BrushBlock(block);
+  const statements_do = Blockly.JavaScript.statementToCode(block, 'do');
+
+  const funcCode = [
+    hasBrushLib ? `
+  // p5js.brush uses WebGL mode & origin by default is at the center of the canvas.
+  // Change it to the top left corner.
+  p5sketch.translate(-p5sketch.width/2,-p5sketch.height/2);` : null,
+    statements_do
+  ].filter(x => !!x).join('\n\n')
+
+  
+  const code = `p5sketch.draw = function() {
+${funcCode}
 };`;
   return code;
 };

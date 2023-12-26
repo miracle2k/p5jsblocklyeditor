@@ -70,6 +70,10 @@ function startStopQRCodeScanner() {
 
 function testQRCode(canvas) {  
   const ctx = canvas.getContext("2d", {willReadFrequently: true});
+  if (!ctx?.getImageData) {
+    // Not a 2D canvas
+    return;
+  }
   const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
   const decoded = jsQR(imageData.data, imageData.width, imageData.height);
   const isValid = !!decoded;

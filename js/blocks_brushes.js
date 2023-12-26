@@ -1,6 +1,16 @@
 // To finish support for this we need https://github.com/acamposuribe/p5.brush/issues/13
 // config: https://github.com/acamposuribe/p5.brush#stroke-operations
 
+
+function sketchHasP5BrushBlock(block) {
+  const hasBrushBlocks = findBlocksWithMatcher(block.workspace, b => {
+    if (b.type.startsWith('brush_')) {
+      return true;
+    }
+  }).length > 0;
+  return hasBrushBlocks;
+}
+
 /////////////////////// Stroke Operations
 
 registerFunctionCall("brush_set", "brush.set", {
