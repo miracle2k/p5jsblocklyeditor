@@ -654,7 +654,7 @@ Blockly.JavaScript['math_single'] = function(block) {
       code = 'Math.floor(' + arg + ')';
       break;
     case 'SIN':
-      code = 'Math.sin(' + arg + ' / 180 * Math.PI)';
+      code = 'Math.sin(' + arg + ')';
       break;
     case 'COS':
       code = 'Math.cos(' + arg + ' / 180 * Math.PI)';
@@ -748,7 +748,7 @@ Blockly.JavaScript['math_single'] = function(block) {
       code = 'Math.floor(' + arg + ')';
       break;
     case 'SIN':
-      code = 'Math.sin(' + arg + ' / 180 * Math.PI)';
+      code = 'Math.sin(' + arg + ')';
       break;
     case 'COS':
       code = 'Math.cos(' + arg + ' / 180 * Math.PI)';

@@ -19,3 +19,13 @@ registerFunctionCall("math_max", "Math.max", {
     b: "Number",
   }
 });
+
+registerFunctionCall("math_sin", "Math.sin", {
+  name: "sin",
+  color: "#5b67a5",
+  tooltip: "sin()",
+  hasOutput: true,
+  fields: {
+    x: "Number",
+  }
+});

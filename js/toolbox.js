@@ -1686,6 +1686,7 @@ var NewToolbox = {
         },
         block("math_min"),
         block("math_max"),
+        block("math_sin"),
       ],
       "categorystyle": "math_category"
     },
