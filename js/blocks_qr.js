@@ -26,7 +26,7 @@ registerBlock("qr_makeCode", {
 // https://github.com/google/blockly/blob/925a7b9723ac46217c64a1842668fd0a66549449/generators/javascript/loops.js#L65
 defineJS("qr_makeCode", ({valueToCode, block}) => {
   const text = valueToCode("data");
-  const statements_do = Blockly.JavaScript.statementToCode(block, 'do');
+  const statements_do = Blockly.JavaScript.prefixLines(Blockly.JavaScript.statementToCode(block, 'do'), Blockly.JavaScript.INDENT + Blockly.JavaScript.INDENT);
 
   // There is a new version of doing this in future versions: 
   // https://github.com/google/blockly/issues/6008
@@ -36,17 +36,16 @@ defineJS("qr_makeCode", ({valueToCode, block}) => {
   const varY = Blockly.JavaScript.nameDB_.getName(block.getFieldValue('y'), "VARIABLE");
 
   return `{
-  const _l = window.qr(${text}, {
+  const __qrCodeData = window.qr(${text}, {
     correction: "${valueToCode("correction")}",
     version: ${valueToCode("version")},
   });
-  _l.forEach((_row, _y) => {
+  __qrCodeData.forEach((_row, _y) => {
     _row.forEach((_value, _x) => {
-      [${varType}, ${varIsOn}] = _value;
-      ${varX} = _x;
-      ${varY} = _y;
-    ${statements_do}
-      });
+      /* internal */ [${varType}, ${varIsOn}] = _value; ${varX} = _x; ${varY} = _y;
+
+${statements_do}
+    });
   });
 }`;
 });
