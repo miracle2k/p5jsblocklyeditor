@@ -43,7 +43,6 @@ defineJS("qr_makeCode", ({valueToCode, block}) => {
   _l.forEach((_row, _y) => {
     _row.forEach((_value, _x) => {
       [${varType}, ${varIsOn}] = _value;
-      console.log(${varType}, ${varIsOn});
       ${varX} = _x;
       ${varY} = _y;
     ${statements_do}

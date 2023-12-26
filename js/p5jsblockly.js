@@ -112,7 +112,6 @@ var myp5;
  */
 function updateP5() {
     let code = Blockly.JavaScript.workspaceToCode(workspace);
-    //var myblocks = Blockly.mainWorkspace.getAllBlocks()
   
     // remove old
     document.getElementById('p5jsContainer').innerHTML = "";

@@ -76,7 +76,7 @@ function defineJS(name, callback) {
 function registerFunctionCall(name, funcname, data) {
   registerBlock(name, data);
   defineJS(name, function ({valueToCode}) {
-    const args = Object.keys(data.fields).map((key) => valueToCode(key));
+    const args = Object.keys(data.fields ?? {}).map((key) => valueToCode(key));
     const code = `${funcname}(${args.join(", ")})`;
     if (data.hasOutput) {
       return [code, Blockly.JavaScript.ORDER_NONE];
