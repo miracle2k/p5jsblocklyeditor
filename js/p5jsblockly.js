@@ -172,8 +172,12 @@ function viewFlems() {
 
 function viewCode() {
     let codeInstance = Blockly.JavaScript.workspaceToCode(workspace);
-    let code1 = codeInstance.replaceAll("p5sketch.", "");    
-    let code = code1.replaceAll("p5sketch, ", "");
+    // Make it nicer
+    let code = codeInstance.replaceAll("p5sketch.", "")
+      .replaceAll("p5sketch, ", "")
+      .replaceAll("setup = function()", "function setup()")
+      .replaceAll("draw = function()", "function draw()");
+
     //dreifache neue Zeile ersetzen
     code = code.replace(/\n\s*\n\s*\n/g, '\n\n');   
     let codeDiv = document.getElementById('codeDiv');
