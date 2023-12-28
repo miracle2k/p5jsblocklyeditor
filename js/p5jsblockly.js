@@ -188,60 +188,67 @@ function viewCode() {
 /**
  * Needs to run once at document init time.
  */
-async function p5Init() {
+async function p5Init(disableLoad) {
     Blockly.mainWorkspace.clear();
+    const allVariables = Blockly.mainWorkspace.getAllVariables();
+    allVariables.forEach(function(variable) {
+      Blockly.mainWorkspace.deleteVariableById(variable.getId());
+    });
+    //Blockly.mainWorkspace.updateToolbox(Blockly.mainWorkspace.toolbox);
     
     Blockly.mainWorkspace.addChangeListener(() => {
       if (Blockly.mainWorkspace.isDragging()) return; // Don't update while changes are happening.
 
       // save to local storage
+      console.log('save to local storage')
       let json = Blockly.serialization.workspaces.save(Blockly.mainWorkspace);
       window.localStorage.setItem("jsonLocalStorage", JSON.stringify(json));
     });
 
+    if (!disableLoad) {
+      let urlString = window.location.hash.slice(1);
+      if (urlString.length > 0) {
+          try {
+            const {default: m} = await import(`./puzzles/${urlString}.js`);
+            Blockly.mainWorkspace.toolbox = filterToolbox(NewToolbox, m.blocks, m.categories);
+            Blockly.mainWorkspace.updateToolbox(Blockly.mainWorkspace.toolbox);
 
-    let urlString = window.location.hash.slice(1);
-    if (urlString.length > 0) {
-        try {
-          const {default: m} = await import(`./puzzles/${urlString}.js`);
-          Blockly.mainWorkspace.toolbox = filterToolbox(NewToolbox, m.blocks);
-          Blockly.mainWorkspace.updateToolbox(Blockly.mainWorkspace.toolbox);
+            Blockly.serialization.workspaces.load(m.code, Blockly.mainWorkspace);
 
-          Blockly.serialization.workspaces.load(m.code, Blockly.mainWorkspace);
+            // Remove has from navigation
+            history.replaceState(null, null, ' ');
 
-          // Remove has from navigation
-          history.replaceState(null, null, ' ');
-
-            // let triggerCode = urlString.substring(0, 4);
-            // if (triggerCode == "#LZ=") {
-            //   let comressedCode = urlString.substring(4);
-            //   let string = LZString.decompressFromEncodedURIComponent(comressedCode);
-            //   let xml = Blockly.Xml.textToDom(string);
-            //   Blockly.Xml.domToWorkspace(Blockly.mainWorkspace, xml);              
-            // }
-            // if (triggerCode == "#PN=") {
-            //   let programmName = urlString.substring(4);
-            //   loadBeispielProgramm('programme/' + programmName + '.p5xml');
-            // }
-        }
-        catch {
-           //Blockly.Xml.domToWorkspace(document.getElementById('startBlocks'), workspace);
-        }
-    } else {
-        // load blockly workspace from local storage
-        let xml = window.localStorage.getItem("xmlLocalStorage");
-        let json =  window.localStorage.getItem("jsonLocalStorage");
-        if (json) {
-            Blockly.serialization.workspaces.load(JSON.parse(json), Blockly.mainWorkspace);
-        }
-        else if (xml) {
-            let xmlDom = Blockly.Xml.textToDom(xml);
-            Blockly.Xml.domToWorkspace(Blockly.mainWorkspace, xmlDom);
-        } else {          
+              // let triggerCode = urlString.substring(0, 4);
+              // if (triggerCode == "#LZ=") {
+              //   let comressedCode = urlString.substring(4);
+              //   let string = LZString.decompressFromEncodedURIComponent(comressedCode);
+              //   let xml = Blockly.Xml.textToDom(string);
+              //   Blockly.Xml.domToWorkspace(Blockly.mainWorkspace, xml);              
+              // }
+              // if (triggerCode == "#PN=") {
+              //   let programmName = urlString.substring(4);
+              //   loadBeispielProgramm('programme/' + programmName + '.p5xml');
+              // }
+          }
+          catch {
             //Blockly.Xml.domToWorkspace(document.getElementById('startBlocks'), workspace);
-        }
+          }
+      } else {
+          // load blockly workspace from local storage
+          let xml = window.localStorage.getItem("xmlLocalStorage");
+          let json =  window.localStorage.getItem("jsonLocalStorage");
+          if (json) {
+              Blockly.serialization.workspaces.load(JSON.parse(json), Blockly.mainWorkspace);
+          }
+          else if (xml) {
+              let xmlDom = Blockly.Xml.textToDom(xml);
+              Blockly.Xml.domToWorkspace(Blockly.mainWorkspace, xmlDom);
+          } else {          
+              //Blockly.Xml.domToWorkspace(document.getElementById('startBlocks'), workspace);
+          }
+      }
     }
-
+    
     let p5jsBreite = 0.3*$(window).width();
     let breite1 = "width: " + p5jsBreite + "px";
     let breite2 = p5jsBreite + "px";
@@ -281,8 +288,8 @@ modalConfirm(function(confirm){
   if(confirm){
     $('#loggerDiv').removeClass('alert alert-danger').addClass('alert alert-light');
     document.getElementById('loggerDiv').innerHTML = '';    
-    myp5.remove();
-    p5Init();
+    myp5?.remove();
+    p5Init(true);
   }else{
   }
 });
@@ -301,5 +308,5 @@ document.getElementById('traceAnzeigen').onclick = function() {
 
 
 document.addEventListener('DOMContentLoaded', function() {
-    p5Init();
+    p5Init(false);
 });
