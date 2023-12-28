@@ -1016,31 +1016,29 @@ var NewToolbox = {
         block('hsbToRgb')
       ],
       "categorystyle": "colour_category"
-    },
-    {
-      "kind": "category",
-      "name": "Functions",
-      "colour": "%{BKY_PROCEDURES_HUE}",
-      "custom": "PROCEDURE"
-    },
+    },    
     {
       "kind": "sep"
     },
     {
       "kind": "category",
-      "name": "Variables",
-      "contents": [],
-      "custom": "VARIABLE",
-      "categorystyle": "variable_category"
+      "name": "3D",
+      "colour": "#5ba57f",
+      "contents": [
+        block("p5_normalMaterial"),
+        block("p5_ambientMaterial"),
+        block("p5_specularMaterial"),
+        block("p5_ambientLight"),
+        block("p5_pointLight"),
+        block("p5_orbitControl"),
+        block("p5_box"),
+        block("p5_sphere"),
+        block("p5_translate_z"),
+        block("p5_rotateX"),
+        block("p5_rotateY"),
+        block("p5_rotateZ"),
+      ]
     },
-    {
-      "kind": "category",
-      "name": "Functions",
-      "contents": [],
-      "custom": "PROCEDURE",
-      "categorystyle": "procedure_category"
-    },
-
     {
       "kind": "category",
       "name": "Brushes",
@@ -1058,6 +1056,29 @@ var NewToolbox = {
         block("brush_flowline"),
         block("brush_rect"),
       ]
+    },
+    {
+      "kind": "sep"
+    },
+    {
+      "kind": "category",
+      "name": "Functions",
+      "colour": "%{BKY_PROCEDURES_HUE}",
+      "custom": "PROCEDURE"
+    },
+    {
+      "kind": "category",
+      "name": "Variables",
+      "contents": [],
+      "custom": "VARIABLE",
+      "categorystyle": "variable_category"
+    },
+    {
+      "kind": "category",
+      "name": "Functions",
+      "contents": [],
+      "custom": "PROCEDURE",
+      "categorystyle": "procedure_category"
     }
   ],
 }
