@@ -32,6 +32,14 @@ function color(x) {
   }
 }
 
+function blockref(type) {
+  return {
+    "shadow": {
+      "type": type
+    }
+  }
+}
+
 /**
  * Return a toolbox entry for the given block id with default defaults for 
  * each field.
@@ -664,6 +672,14 @@ var NewToolbox = {
         block("math_min"),
         block("math_max"),
         block("math_sin"),
+        block('x_math_cycle', {
+          inputs: {
+            time: blockref("zeit_millis"),
+            start: number(0),
+            end: number(1),
+            duration: number(1000),
+          }
+        })
       ],
       "categorystyle": "math_category"
     },
