@@ -105,55 +105,31 @@ export default {
                                                 }
                                             },
                                             "block": {
-                                                "type": "math_min",
-                                                "id": "Pm|C9g~E;EMV6t,zWVeI",
+                                                "type": "math_arithmetic",
+                                                "id": "`_bhuyHyoFgxz.6/uxtT",
+                                                "fields": {
+                                                    "OP": "DIVIDE"
+                                                },
                                                 "inputs": {
-                                                    "a": {
+                                                    "A": {
                                                         "shadow": {
                                                             "type": "math_number",
-                                                            "id": "+tCM--K~GZ|Av@hh:(3K",
+                                                            "id": "(ijN_B}UJ6Nx/O?Qcf%;",
                                                             "fields": {
-                                                                "NUM": 0
+                                                                "NUM": 1
                                                             }
                                                         },
                                                         "block": {
-                                                            "type": "math_arithmetic",
-                                                            "id": "`_bhuyHyoFgxz.6/uxtT",
-                                                            "fields": {
-                                                                "OP": "DIVIDE"
-                                                            },
-                                                            "inputs": {
-                                                                "A": {
-                                                                    "shadow": {
-                                                                        "type": "math_number",
-                                                                        "id": "(ijN_B}UJ6Nx/O?Qcf%;",
-                                                                        "fields": {
-                                                                            "NUM": 1
-                                                                        }
-                                                                    },
-                                                                    "block": {
-                                                                        "type": "zeit_millis",
-                                                                        "id": "F+l^!9m,B5Vp?6@^4.lB"
-                                                                    }
-                                                                },
-                                                                "B": {
-                                                                    "shadow": {
-                                                                        "type": "math_number",
-                                                                        "id": "Bup2^suFWghTUVT(qr==",
-                                                                        "fields": {
-                                                                            "NUM": 10
-                                                                        }
-                                                                    }
-                                                                }
-                                                            }
+                                                            "type": "zeit_millis",
+                                                            "id": "F+l^!9m,B5Vp?6@^4.lB"
                                                         }
                                                     },
-                                                    "b": {
+                                                    "B": {
                                                         "shadow": {
                                                             "type": "math_number",
-                                                            "id": "8t;tV{fJnn~lLkc;4J3(",
+                                                            "id": "Bup2^suFWghTUVT(qr==",
                                                             "fields": {
-                                                                "NUM": 200
+                                                                "NUM": 10
                                                             }
                                                         }
                                                     }

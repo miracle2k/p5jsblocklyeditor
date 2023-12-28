@@ -209,6 +209,9 @@ async function p5Init() {
 
           Blockly.serialization.workspaces.load(m.code, Blockly.mainWorkspace);
 
+          // Remove has from navigation
+          history.replaceState(null, null, ' ');
+
             // let triggerCode = urlString.substring(0, 4);
             // if (triggerCode == "#LZ=") {
             //   let comressedCode = urlString.substring(4);
