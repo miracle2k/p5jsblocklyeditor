@@ -1041,6 +1041,7 @@ var NewToolbox = {
       "name": "3D",
       "colour": "#5ba57f",
       "contents": [
+        block("p5_ortho"),
         block("p5_normalMaterial"),
         block("p5_ambientMaterial"),
         block("p5_specularMaterial"),

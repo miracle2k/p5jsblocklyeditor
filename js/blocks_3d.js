@@ -1,5 +1,11 @@
 // This is good: https://p5js.org/learn/getting-started-in-webgl-appearance.html
 
+registerFunctionCall("p5_ortho", "p5sketch.ortho", {
+  name: "ortho()",
+  color: "#5ba57f",
+  tooltip: "orthographic camera",  
+});
+
 registerFunctionCall("p5_normalMaterial", "p5sketch.normalMaterial", {
   name: "normalMaterial()",
   color: "#5ba57f",
