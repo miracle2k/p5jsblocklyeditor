@@ -1063,6 +1063,7 @@ var NewToolbox = {
       "name": "Brushes",
       "colour": "#92967D",
       "contents": [
+        block("brush_field"),
         block("brush_set"),
         block("brush_pick"),      
         block("brush_stroke"),

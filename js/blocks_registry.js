@@ -19,9 +19,27 @@ function registerBlock(name, data) {
         //  appendValueInput can connect to other blocks.
 
         // This is a select box. 
-        if (typeof value === "object") {          
+        if (typeof value === "object") {    
+          // Old-style select definitions were not very flexible.
+          const isNewStyle = isNewStyleSelect(value);
+          
+          let selectValues;
+
+          if (!isNewStyle) {
+            // keys are displayed, values become the the option id, (and
+            // are eventually written to the generated code output as-is).
+            selectValues = Object.entries(value);
+          }
+
+          else {
+            // Here, the key is the option id, and the value is a dict with details
+            selectValues = Object.entries(value).map(([key, value]) => {
+              return [value.label, key];
+            });
+          }
+
           this.appendDummyInput(key).appendField(key).appendField(
-            new Blockly.FieldDropdown(Object.entries(value)), key);
+            new Blockly.FieldDropdown(selectValues), key);
         }
 
         // else if (value == "Var") {
@@ -65,16 +83,28 @@ function registerBlock(name, data) {
 /**
  * Define the JS code to be generated for a block.
  */
-function defineJS(name, callback) {
-  Blockly.JavaScript[name] = function (block) {
+function defineJS(blockId, callback) {
+  Blockly.JavaScript[blockId] = function (block) {
     return callback({
       block,
       valueToCode: (name) => {
-        const fieldValue = block.getFieldValue(name);
+        let fieldValue = block.getFieldValue(name);
 
-        // We overlay v input fields, so a single valueToCode call can return both types.
+        // We overlay input fields, so a single valueToCode call can return both types.
         // Their names should not overlap.
         if (fieldValue) {
+            // Check if this is a select
+            const fieldDef = Blocks[blockId]?.fields?.[name];
+            if (typeof fieldDef == 'object') {
+              if (isNewStyleSelect(fieldDef)) {
+                fieldValue = fieldDef[fieldValue].value ?? fieldValue;
+                if (fieldDef[fieldValue].type == "string") {
+                  fieldValue = `"${fieldValue}"`;
+                }
+                return fieldValue;
+              }
+            }
+
             // For now, we assume that each field is a constant value.
             return `${fieldValue}`;
         }
@@ -97,6 +127,15 @@ function registerFunctionCall(name, funcname, data) {
       return code + ';\n';
     }
   });
+}
+
+function isNewStyleSelect(fieldDef) {
+  return Object.values(fieldDef).filter(v => typeof v === "object").length > 0;
+}
+
+// Mark a select option as a string
+function option(value, label) {
+  return { type: 'string', label: label ?? value, value };
 }
 
 /**

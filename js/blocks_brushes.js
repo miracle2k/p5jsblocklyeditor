@@ -11,6 +11,22 @@ function sketchHasP5BrushBlock(blockOrWorkspace) {
   return hasBrushBlocks;
 }
 
+/////////////////////// Vector Fields
+
+registerFunctionCall("brush_field", "brush.field", {
+  name: "field()",
+  tooltip: "Activates a named vector field. When a vector field is active, it influences the flow and direction of the brush strokes for shapes drawn thereafter. It is important to note that certain shapes may be exempt from this influence; such exceptions will be clearly documented in the API for each specific geometry.",
+  fields: {
+    name: {
+      "curved": option("curved"),
+      "truncated": option("truncated"),
+      "zigzag": option("zigzag"),
+      "seabed": option("seabed"),
+      "waves": option("waves"),
+    }
+  }
+});
+
 /////////////////////// Stroke Operations
 
 registerFunctionCall("brush_set", "brush.set", {
