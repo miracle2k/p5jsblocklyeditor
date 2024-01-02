@@ -22,7 +22,9 @@
       import { qr} from "./lib/qr/headless-qr.js";
       window.qr = qr;      
     </script>
-    <script src="lib/qr/jsQR.js"></script>
+    <script type="module" src="js/components/modal.mjs"></script>
+
+    <script src="lib/qr/jsQR.js"></script>    
 
     <script src="lib/p5jsbrush/p5jsbrush.js"></script>
 
@@ -145,6 +147,8 @@
 </div>
 
 <!-- Footer -->
+<load-dialog id="load-dialog"></load-dialog>
+
 <nav class="navbar navbar-expand-lg navbar-light bg-light pt-2">
   <div class="container-fluid">
     <form class="d-flex">
@@ -155,8 +159,9 @@
     </form>
     <form class="d-flex">
       <div class="input-group input-group-sm">
+        <button id="p5Load" class="btn btn-outline-secondary" type="button">Load</button>
         <label class="btn btn-outline-secondary btn-sm">
-          <i class="bi bi-upload"></i> Load Program <input type="file" accept=".p5xml" id="p5Dateiwahl" hidden>
+          <i class="bi bi-upload"></i> Load from File <input type="file" accept=".p5xml" id="p5Dateiwahl" hidden>
         </label>
       </div>
     </form>

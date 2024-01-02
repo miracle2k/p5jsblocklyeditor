@@ -2,18 +2,55 @@
 
 document.getElementById('p5saveDateiname').value = 'BlocklyCode';
 
-document.getElementById('p5Save').onclick = function() {
+//let currentlyOpenSketchId = null;
+
+document.getElementById('p5Save').onclick = async function() {
   try {
-    let json = Blockly.serialization.workspaces.save(Blockly.mainWorkspace);
-    var json_text = JSON.stringify(json, null, 4);
-    let link = document.createElement('a');
-    link.download = document.getElementById('p5saveDateiname').value + '.p5xml';
-    link.href = "data:application/octet-stream;utf-8," + encodeURIComponent(json_text);
-    document.body.appendChild(link);
-    link.click();
-    link.remove();
+    const filename = document.getElementById('p5saveDateiname').value;
+
+
+    // HACK: get all existing sketches
+    const responseRead = await fetch('https://api.nodb.sh/p5js-blockly/prod/sketches?token=ob2y31v0j832st', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+    const {sketches} = await responseRead.json();
+
+    // find the id id of the one with the target filename
+    const existingSketch = sketches.find(s => s.name === filename);
+
+
+    
+    const json = Blockly.serialization.workspaces.save(Blockly.mainWorkspace);
+    const doc = {
+      id: existingSketch?.id ?? null,
+      name: filename,
+      data: json
+    }
+
+    const response = await fetch('https://api.nodb.sh/p5js-blockly/prod/sketches?token=ob2y31v0j832st', {
+      method: existingSketch ? 'PUT' : 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify([doc])
+    });
+
+    
+    //const data = await response.json();    
+    //currentlyOpenSketchId = data[0].id;
+    
+    // Download as a file
+    // let link = document.createElement('a');
+    // link.download = document.getElementById('p5saveDateiname').value + '.p5xml';
+    // link.href = "data:application/octet-stream;utf-8," + encodeURIComponent(json_text);
+    // document.body.appendChild(link);
+    // link.click();
+    // link.remove();
   } catch(e) {
-      console.log(e)
+      alert(e);
    }
 };
 
@@ -28,6 +65,14 @@ document.getElementById('URLSave').onclick = function() {
   } catch { }
 };
 
+/** Load from cloud */
+document.getElementById('p5Load').onclick = function() {
+  document.getElementById('load-dialog').opened = true;
+};
+
+/**
+ * Load from file
+ */
 const fileSelector = document.getElementById('p5Dateiwahl');
 fileSelector.addEventListener('change', (event) => {
   const fileList = event.target.files;
