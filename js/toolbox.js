@@ -321,7 +321,8 @@ var NewToolbox = {
           "inputs": {
             "dicke": number(0)
           }
-        }
+        },
+        block('dom_linearGradient')
       ]
     },
     {

@@ -1,4 +1,4 @@
-// Pt 2021 - MIT-License
+var farbep5Helfer = "#da5a73";
 
 //Kategorie: p5-Helfer
 Blockly.Blocks['moduloframe'] = {
@@ -109,31 +109,17 @@ Blockly.JavaScript['push_pop'] = function(block) {
   return code;
 };
 
-Blockly.Blocks['translate_var'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField("Translate");
-    this.appendValueInput("deltaX")
-        .setCheck("Number")
-        .appendField("in x direction by:");
-    this.appendValueInput("deltaY")
-        .setCheck("Number")
-        .appendField("in y direction by:");
-    this.setInputsInline(true);
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
-    this.setColour(farbep5Helfer);
- this.setTooltip("Shifts all subsequent objects by the specified number of pixels.");
- this.setHelpUrl("https://p5js.org/reference/#/p5/translate");
+registerFunctionCall("translate_var", "p5sketch.translate", {
+  name: "translate()",
+  color: farbep5Helfer,
+  tooltip: "Shifts all subsequent objects by the specified number of pixels.",
+  helpUrl: "https://p5js.org/reference/#/p5/translate",
+  fields: {
+    deltaX: "Number",
+    deltaY: "Number",
   }
-};
+});
 
-Blockly.JavaScript['translate_var'] = function(block) {
-  var value_deltaX = Blockly.JavaScript.valueToCode(block, 'deltaX', Blockly.JavaScript.ORDER_ATOMIC);
-  var value_deltaY = Blockly.JavaScript.valueToCode(block, 'deltaY', Blockly.JavaScript.ORDER_ATOMIC);
-  var code = 'p5sketch.translate(' + value_deltaX + ', ' + value_deltaY + ');\n';
-  return code;
-};
 
 Blockly.Blocks['rotate_var'] = {
   init: function() {
