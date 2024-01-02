@@ -30,9 +30,13 @@ function registerBlock(name, data) {
         // }
         
         else {
-          // value input means you can connect something. the field here is just the label.
+          // value input means you can connect something. the field here is just the label.          
+          let input = this.appendValueInput(key);
+          // if not value type is given, allow anything
+          if (value) {
+            input.setCheck(value);
+          }
           // hide the label if there is only one field
-          let input = this.appendValueInput(key).setCheck(value);
           if (numFields > 1) {
             input.appendField(key);
           }          

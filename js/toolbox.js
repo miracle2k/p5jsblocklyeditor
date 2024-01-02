@@ -322,7 +322,8 @@ var NewToolbox = {
             "dicke": number(0)
           }
         },
-        block('dom_linearGradient')
+        block('dom_linearGradient'),
+        block('dom_linearGradient_colorStop'),
       ]
     },
     {

@@ -300,3 +300,51 @@ registerFunctionCall("strokeweight_var", "p5sketch.strokeWeight", {
     dicke: "Number"
   }
 });
+
+
+registerBlock("dom_linearGradient", {
+  name: "Linear Gradient Fill",
+  color: farbeAussehen,
+  tooltip: "Set fill style to a linear gradient",
+  fields: {
+    x0: "Number",
+    y0: "Number",
+    x1: "Number",
+    y1: "Number",
+  },
+  allowStatements: true
+});
+
+registerBlock("dom_linearGradient_colorStop", {
+  name: "addColorStop()",
+  color: farbeAussehen,
+  tooltip: "Add a color stop to the gradient",
+  fields: {
+    offset: "Number",
+    color: ""
+  },
+  allowStatements: false
+});
+
+defineJS("dom_linearGradient", function ({valueToCode, block}) {
+  const x0 = valueToCode("x0");
+  const y0 = valueToCode("y0");
+  const x1 = valueToCode("x1");
+  const y1 = valueToCode("y1");
+  const initCode = `let g__ = p5sketch.drawingContext.createLinearGradient(${x0}, ${y0}, ${x1}, ${y1});\n`;
+  const completeCode = `p5sketch.drawingContext.fillStyle = g__;\n`;
+  const statementsDo = removeLeadingSpaces(Blockly.JavaScript.statementToCode(block, 'do'));
+  const allCode = initCode + statementsDo + completeCode;
+  // Wrap in block to protect against g__ being re-used
+  return '{\n' + Blockly.JavaScript.prefixLines(allCode, Blockly.JavaScript.INDENT) + '}\n';
+});
+
+defineJS("dom_linearGradient_colorStop", function ({valueToCode}) {
+  const offset = valueToCode("offset");
+  const color = valueToCode("color");
+  return `g__.addColorStop(${offset}, ${color});\n`;
+});
+
+function removeLeadingSpaces(str) {
+  return str.replace(/^\s+/gm, '');
+}
