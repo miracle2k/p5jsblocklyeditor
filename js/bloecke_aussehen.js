@@ -1,5 +1,5 @@
 
-// Pt 2021 - MIT-License
+var farbeAussehen = "#95a5a6";
 
 //Category: Appearance
 Blockly.Blocks['p5_color'] = {
@@ -291,25 +291,12 @@ Blockly.JavaScript['stroke_var'] = function(block) {
   return code;
 };
 
-Blockly.Blocks['strokeweight_var'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField("Line thickness:");
-    this.appendValueInput("dicke")
-        .setCheck("Number");
-    this.appendDummyInput()
-        .appendField("px");
-    this.setInputsInline(true);
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
-    this.setColour(farbeAussehen);
- this.setTooltip("Set the line thickness.");
- this.setHelpUrl("https://p5js.org/reference/#/p5/strokeWeight");
+registerFunctionCall("strokeweight_var", "p5sketch.strokeWeight", {
+  name: "strokeWeight()",
+  color: farbeAussehen,
+  tooltip: "Set the line thickness",
+  helpUrl: "https://p5js.org/reference/#/p5/strokeWeight",
+  fields: {
+    dicke: "Number"
   }
-};
-
-Blockly.JavaScript['strokeweight_var'] = function(block) {
-  var value_weight = Blockly.JavaScript.valueToCode(block, 'dicke', Blockly.JavaScript.ORDER_ATOMIC);
-  var code = 'p5sketch.strokeWeight(' + value_weight + ');\n';
-  return code;
-};
+});

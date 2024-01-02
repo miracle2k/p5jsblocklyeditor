@@ -8,7 +8,11 @@ var Blocks = {};
 function registerBlock(name, data) {
   Blockly.Blocks[name] = {
     init: function () {
+      const numFields = Object.keys(data.fields ?? {}).length;
+
+      // This is the block name
       this.appendDummyInput().appendField(data.name);
+
       for (const [key, value] of Object.entries(data.fields ?? {})) {
         // Note: 
         //  appendDummyInput has no "connections", just a field.
@@ -26,8 +30,12 @@ function registerBlock(name, data) {
         // }
         
         else {
-          // value input means you can connect something. the field here is just the label
-          this.appendValueInput(key).setCheck(value).appendField(key);
+          // value input means you can connect something. the field here is just the label.
+          // hide the label if there is only one field
+          let input = this.appendValueInput(key).setCheck(value);
+          if (numFields > 1) {
+            input.appendField(key);
+          }          
         }        
       }
 
