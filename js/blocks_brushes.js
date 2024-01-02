@@ -15,6 +15,7 @@ function sketchHasP5BrushBlock(blockOrWorkspace) {
 
 registerFunctionCall("brush_field", "brush.field", {
   name: "field()",
+  color: '#6c6a6a',
   tooltip: "Activates a named vector field. When a vector field is active, it influences the flow and direction of the brush strokes for shapes drawn thereafter. It is important to note that certain shapes may be exempt from this influence; such exceptions will be clearly documented in the API for each specific geometry.",
   fields: {
     name: {
@@ -29,31 +30,49 @@ registerFunctionCall("brush_field", "brush.field", {
 
 registerFunctionCall("brush_nofield", "brush.noField", {
   name: "noField()",
+  color: '#6c6a6a',
   tooltip: "Deactivates any active vector field."
 });
 
 /////////////////////// Stroke Operations
 
+const brushes = {
+  '2B': option('2B'),
+  'HB': option('HB'),
+  '2H': option('2H'),
+  'cpencil': option('cpencil'),
+  'pen': option('pen'),
+  'rotring': option('rotring'),
+  'spray': option('spray'),
+  'marker': option('marker'),
+  'marker2': option('marker2'),
+  'charcoal': option('charcoal'),
+  'charcoal': option('hatch_brush'),
+}
+
 registerFunctionCall("brush_set", "brush.set", {
-  name: "Pick Brush with Options",
+  name: "pick()",
+  color: '#544c4c',
   tooltip: "Pick Brush with Options",
   fields: {
-    name: "String",
+    name: brushes,
     color: "",
     weight: "Number",
   }
 });
 
 registerFunctionCall("brush_pick", "brush.pick", {
-  name: "Pick Brush",
+  name: "pick()",
+  color: '#544c4c',
   tooltip: "Pick Brush with default options",
   fields: {
-    name: "String"
+    name: brushes
   }
 });
 
 registerFunctionCall("brush_stroke", "brush.stroke", {
-  name: "Set Brush Stroke Color",
+  name: "stroke()",
+  color: '#544c4c',
   tooltip: "Sets the color of the current brush.",
   fields: {
     color: ""
@@ -61,12 +80,14 @@ registerFunctionCall("brush_stroke", "brush.stroke", {
 });
 
 registerFunctionCall("brush_nostroke", "brush.noStroke", {
-  name: "Disable Brush Stroke Color",
+  name: "noStroke()",
+  color: '#544c4c',
   tooltip: "Removes any brush stroke color" 
 });
 
 registerFunctionCall("brush_strokeweight", "brush.strokeWeight", {
-  name: "Set Brush Stroke Weight",
+  name: "strokeWeight()",
+  color: '#544c4c',
   tooltip: "Sets the weight of the brush stroke",
   fields: {
     weight: "Number"
@@ -76,8 +97,9 @@ registerFunctionCall("brush_strokeweight", "brush.strokeWeight", {
 /////////////////////// Fill
 
 registerFunctionCall("brush_fill", "brush.fill", {
-  name: "Set Brush Fill Color",
+  name: "fill()",
   tooltip: "Sets the fill color for subseuqent shapes.",
+  color: '#424040',
   fields: {
     color: "",
     alpha: "Number"
@@ -88,12 +110,14 @@ registerFunctionCall("brush_fill", "brush.fill", {
 });
 
 registerFunctionCall("brush_nofill", "brush.noFill", {
-  name: "Disable Brush Fill Color",
+  name: "noFill()",
+  color: '#424040',
   tooltip: "Removes any brush fill color" 
 });
 
 registerFunctionCall("brush_bleed", "brush.bleed", {
-  name: "Set Brush Bleed",
+  name: "bleed()",
+  color: '#424040',
   tooltip: "Sets the amount of bleed for the brush; capped at 0.5",
   fields: {
     strength: "Number",
@@ -109,7 +133,8 @@ registerFunctionCall("brush_bleed", "brush.bleed", {
 /////////////////////// Geometry
 
 registerFunctionCall("brush_line", "brush.line", {
-  name: "Line",
+  name: "line()",
+  color: '#000000',
   tooltip: "Draw a line",
   fields: {
     x1: "Number",
@@ -120,7 +145,8 @@ registerFunctionCall("brush_line", "brush.line", {
 });
 
 registerFunctionCall("brush_flowline", "brush.flowLine", {
-  name: "Flowline",
+  name: "flowline()",
+  color: '#000000',
   tooltip: "Draw a line following the flow field",
   fields: {
     x: "Number",
@@ -132,7 +158,8 @@ registerFunctionCall("brush_flowline", "brush.flowLine", {
 
 
 registerFunctionCall("brush_rect", "brush.rect", {
-  name: "Rect",
+  name: "rect()",
+  color: '#000000',
   tooltip: "Draw a rect",
   fields: {
     x: "Number",
@@ -143,12 +170,55 @@ registerFunctionCall("brush_rect", "brush.rect", {
 });
 
 registerFunctionCall("brush_circle", "brush.circle", {
-  name: "Circle",
+  name: "circle()",
+  color: '#000000',
   tooltip: "Draw a circle",
   fields: {
     x: "Number",
     y: "Number",
     r: "Number",
     // xxx add handdrawn
+  }
+});
+
+
+/////////////////////// Hatch operations
+
+registerBlock("brush_hatch", {
+  name: "hatch()",
+  color: '#7b7b7b',
+  tooltip: "Sets a hash pattern for subsequent shapes",
+  fields: {
+    dist: "Number",
+    angle: "Number",
+    rand: "Number",
+    gradient: "Number",
+    // xxx add continuous
+  }
+});
+
+defineJS("brush_hatch", ({valueToCode, block}) => {
+  const dist = valueToCode("dist");
+  const angle = valueToCode("angle");
+  const rand = valueToCode("rand");
+  const gradient = valueToCode("gradient");
+
+  return `brush.hatch(${dist}, ${angle}, {rand: ${rand}, gradient: ${gradient}});\n`;
+});
+
+registerFunctionCall("brush_nohatch", "brush.noHatch", {
+  name: "noHatch()",
+  color: '#7b7b7b',
+  tooltip: "Removes any hatch pattern" 
+});
+
+registerFunctionCall("brush_sethatch", "brush.setHatch", {
+  name: "setHatch()",
+  color: '#7b7b7b',
+  tooltip: "Sets a hash pattern for subsequent shapes",
+  fields: {
+    name: brushes,
+    color: "",
+    weight: "Number",
   }
 });

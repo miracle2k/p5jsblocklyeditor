@@ -1075,6 +1075,15 @@ var NewToolbox = {
         block("brush_nofill"),
         block("brush_bleed"),
 
+        block("brush_hatch", {
+          inputs: {
+            dist: 5,
+            angle: 45
+          }
+        }),
+        block("brush_nohatch"),
+        block("brush_sethatch"),
+
         block("brush_line"),
         block("brush_flowline"),
         block("brush_rect"),
