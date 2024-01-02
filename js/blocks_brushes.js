@@ -34,7 +34,7 @@ registerFunctionCall("brush_set", "brush.set", {
   tooltip: "Pick Brush with Options",
   fields: {
     name: "String",
-    color: "Colour",
+    color: "",
     weight: "Number",
   }
 });
@@ -51,7 +51,7 @@ registerFunctionCall("brush_stroke", "brush.stroke", {
   name: "Set Brush Stroke Color",
   tooltip: "Sets the color of the current brush.",
   fields: {
-    color: "Colour"
+    color: ""
   }
 });
 
@@ -74,7 +74,7 @@ registerFunctionCall("brush_fill", "brush.fill", {
   name: "Set Brush Fill Color",
   tooltip: "Sets the fill color for subseuqent shapes.",
   fields: {
-    color: "Colour",
+    color: "",
     alpha: "Number"
   },
   defaults: {
