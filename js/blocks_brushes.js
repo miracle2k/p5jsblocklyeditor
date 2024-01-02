@@ -27,6 +27,11 @@ registerFunctionCall("brush_field", "brush.field", {
   }
 });
 
+registerFunctionCall("brush_nofield", "brush.noField", {
+  name: "noField()",
+  tooltip: "Deactivates any active vector field."
+});
+
 /////////////////////// Stroke Operations
 
 registerFunctionCall("brush_set", "brush.set", {
@@ -82,6 +87,25 @@ registerFunctionCall("brush_fill", "brush.fill", {
   }
 });
 
+registerFunctionCall("brush_nofill", "brush.noFill", {
+  name: "Disable Brush Fill Color",
+  tooltip: "Removes any brush fill color" 
+});
+
+registerFunctionCall("brush_bleed", "brush.bleed", {
+  name: "Set Brush Bleed",
+  tooltip: "Sets the amount of bleed for the brush; capped at 0.5",
+  fields: {
+    strength: "Number",
+    direction: {
+      "out": option("out"),
+      "in": option("in"),
+    },
+    borderIntensity: "Number",
+  }
+});
+
+
 /////////////////////// Geometry
 
 registerFunctionCall("brush_line", "brush.line", {
@@ -115,5 +139,16 @@ registerFunctionCall("brush_rect", "brush.rect", {
     y: "Number",
     w: "Number",
     h: "Number",
+  }
+});
+
+registerFunctionCall("brush_circle", "brush.circle", {
+  name: "Circle",
+  tooltip: "Draw a circle",
+  fields: {
+    x: "Number",
+    y: "Number",
+    r: "Number",
+    // xxx add handdrawn
   }
 });

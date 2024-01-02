@@ -1064,6 +1064,7 @@ var NewToolbox = {
       "colour": "#92967D",
       "contents": [
         block("brush_field"),
+        block("brush_nofield"),
         block("brush_set"),
         block("brush_pick"),      
         block("brush_stroke"),
@@ -1071,10 +1072,13 @@ var NewToolbox = {
         block("brush_strokeweight"),
 
         block("brush_fill"),
+        block("brush_nofill"),
+        block("brush_bleed"),
 
         block("brush_line"),
         block("brush_flowline"),
         block("brush_rect"),
+        block("brush_circle"),
       ]
     },
     {
