@@ -1,7 +1,7 @@
 var color = "#da5a73";
 
 registerFunctionCall("p5_randomSeed", "p5sketch.randomSeed", {
-  name: "Random Seed",
+  name: "randomSeed()",
   color,
   tooltip: "Set the seed that determines the sequence of random numbers",
   fields: {
@@ -10,7 +10,7 @@ registerFunctionCall("p5_randomSeed", "p5sketch.randomSeed", {
 });
 
 registerFunctionCall("p5_noiseSeed", "p5sketch.noiseSeed", {
-  name: "Noise Seed",
+  name: "noiseSeed()",
   color,
   tooltip: "Set the seed that determines the noise numbers",
   fields: {
