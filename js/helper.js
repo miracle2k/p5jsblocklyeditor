@@ -10,7 +10,7 @@ document.getElementById('p5Save').onclick = async function() {
 
 
     // HACK: get all existing sketches
-    const responseRead = await fetch('https://api.nodb.sh/p5js-blockly/prod/sketches?token=ob2y31v0j832st', {
+    const responseRead = await fetch('https://api.nodb.sh/p5js-blockly/prod/sketches?token=ob2y31v0j832st&__per_page=100', {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json'

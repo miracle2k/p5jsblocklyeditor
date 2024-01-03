@@ -28,7 +28,7 @@ class LoadDialog extends LitElement {
 
   sketchTask = new Task(this, {
     task: async ([], {signal}) => {
-      const response = await fetch('https://api.nodb.sh/p5js-blockly/prod/sketches?token=ob2y31v0j832st', {
+      const response = await fetch('https://api.nodb.sh/p5js-blockly/prod/sketches?token=ob2y31v0j832st&__per_page=100', {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json'
