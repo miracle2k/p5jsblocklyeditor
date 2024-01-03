@@ -20,8 +20,6 @@ document.getElementById('p5Save').onclick = async function() {
 
     // find the id id of the one with the target filename
     const existingSketch = sketches.find(s => s.name === filename);
-
-
     
     const json = Blockly.serialization.workspaces.save(Blockly.mainWorkspace);
     const doc = {

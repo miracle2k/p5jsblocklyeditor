@@ -113,8 +113,8 @@ var myp5;
 function updateP5() {
     let code = Blockly.JavaScript.workspaceToCode(workspace);
     
-
-    if (sketchHasP5BrushBlock(workspace)) {      
+    if (sketchHasP5BrushBlock(workspace)) {
+      window.loadBrushLibrary(window.brush = {});
       brush.installLibrary();
     }
     else {
