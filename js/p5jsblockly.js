@@ -118,7 +118,9 @@ function updateP5() {
       brush.installLibrary();
     }
     else {
-      brush.uninstallLibrary();
+      if (typeof brush !== 'undefined') {
+        brush?.uninstallLibrary();
+      }
     }
   
     // remove old
