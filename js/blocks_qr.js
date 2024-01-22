@@ -1,7 +1,9 @@
-registerBlock("qr_makeCode", {
-  name: "QR Code",
+var color = "#0bd4c7";
+
+registerBlock("qr_renderCode", {
+  name: "Draw QR Code",
   color,
-  tooltip: "Generate a QR code from the given text",
+  tooltip: "Generate a QR code from the given text, draw each module",
   fields: {
     data: "String",
     version: "Number",
@@ -24,7 +26,7 @@ registerBlock("qr_makeCode", {
 
 // Example of how to emit code that uses variables:
 // https://github.com/google/blockly/blob/925a7b9723ac46217c64a1842668fd0a66549449/generators/javascript/loops.js#L65
-defineJS("qr_makeCode", ({valueToCode, block}) => {
+defineJS("qr_renderCode", ({valueToCode, block}) => {
   const text = valueToCode("data");
   const statements_do = Blockly.JavaScript.prefixLines(Blockly.JavaScript.statementToCode(block, 'do'), Blockly.JavaScript.INDENT + Blockly.JavaScript.INDENT);
 
@@ -48,6 +50,76 @@ ${statements_do}
     });
   });
 }`;
+});
+
+
+registerBlock("qr_createCode", {
+  name: "Create QR Code",
+  color,
+  tooltip: "Generate a QR code from the given text, store in variable",
+  fields: {
+    data: "String",
+    version: "Number",
+    correction: {
+      'L': 'L',
+      'M': 'M',
+      'Q': 'Q',
+      'H': 'H',
+    }
+  },
+  hasOutput: true
+});
+
+defineJS("qr_createCode", ({valueToCode, block}) => {
+  return [`window.qr(${valueToCode("data")}, {correction: "${valueToCode("correction")}", version: ${valueToCode("version")}})`, Blockly.JavaScript.ORDER_FUNCTION_CALL];
+});
+
+registerBlock("qr_getSize", {
+  name: "QRCode: Get Size",
+  color,
+  tooltip: "Return the size of the qr code stored in the given variable",
+  fields: {
+    qrcode: "",    
+  },
+  hasOutput: true
+});
+
+defineJS("qr_getSize", ({valueToCode, block}) => {
+  return [`${valueToCode("qrcode")}.length`, Blockly.JavaScript.ORDER_FUNCTION_CALL];
+});
+
+registerBlock("qr_getModuleValue", {
+  name: "QRCode: On?",
+  color,
+  tooltip: "Get the on/off state of the given qr code module",
+  fields: {
+    qrcode: "",
+    x: "Number",
+    y: "Number",
+
+  },
+  hasOutput: true
+});
+
+defineJS("qr_getModuleValue", ({valueToCode, block}) => {
+  return [`${valueToCode("qrcode")}[${valueToCode("y")}-1][${valueToCode("x")}-1][1]`, Blockly.JavaScript.ORDER_FUNCTION_CALL];
+});
+
+registerBlock("qr_getModuleType", {
+  name: "QRCode: Module Type",
+  color,
+  tooltip: "Get the module type of the given qr code module",
+  fields: {
+    qrcode: "",
+    x: "Number",
+    y: "Number",
+
+  },
+  hasOutput: true
+});
+
+defineJS("qr_getModuleType", ({valueToCode, block}) => {
+  return [`${valueToCode("qrcode")}[${valueToCode("y")}-1][${valueToCode("x")}-1][0]`, Blockly.JavaScript.ORDER_FUNCTION_CALL];
 });
 
 ////////// Below is the IDE UX integration

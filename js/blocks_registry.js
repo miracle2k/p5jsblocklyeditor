@@ -121,7 +121,7 @@ function registerFunctionCall(name, funcname, data) {
     const args = Object.keys(data.fields ?? {}).map((key) => valueToCode(key));
     const code = `${funcname}(${args.join(", ")})`;
     if (data.hasOutput) {
-      return [code, Blockly.JavaScript.ORDER_NONE];
+      return [code, Blockly.JavaScript.ORDER_FUNCTION_CALL];
     }
     else {
       return code + ';\n';

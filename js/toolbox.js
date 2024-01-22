@@ -113,8 +113,7 @@ var NewToolbox = {
         {
           "kind": "block",
           "type": "keypressed"
-        },
-        block('qr_makeCode')
+        },        
       ]
     },
 
@@ -1056,6 +1055,19 @@ var NewToolbox = {
         block("p5_rotateX"),
         block("p5_rotateY"),
         block("p5_rotateZ"),
+      ]
+    },
+
+    {
+      "kind": "category",
+      "name": "QR Code",
+      "colour": "#0bd4c7",
+      "contents": [
+        block('qr_renderCode'),
+        block('qr_createCode'),
+        block('qr_getSize'),
+        block('qr_getModuleValue'),
+        block('qr_getModuleType'),
       ]
     },
     {
