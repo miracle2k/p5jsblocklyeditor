@@ -1,5 +1,40 @@
 // Pt 2021 - MIT-License
 
+async function supabaseCall(method, data, opts) {
+  const key = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndjdGR3em5qZ2p0eXZ0YXVramFmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDU4OTUyODksImV4cCI6MjAyMTQ3MTI4OX0.xgHENnyd-IUztTEBC5d0oCkxgdeIkYy02VJp57rHkR0";
+
+  let url = 'https://wctdwznjgjtyvtaukjaf.supabase.co/rest/v1/sketches';
+  let body;
+  if (method === 'GET' || method === 'DELETE') {
+    const params = new URLSearchParams(data);
+    url += '?' + params.toString();    
+  }
+  else {
+    body = JSON.stringify(data);
+
+    // allow querystring in addition to the body
+    const params = new URLSearchParams(opts?.qs);
+    url += '?' + params.toString();
+  }
+
+  const response = await fetch(url, {
+      method,
+      headers: {
+        'Content-Type': 'application/json',
+        'apikey': key,
+        'Authorization': `Bearer ${key}`,
+        ...opts?.headers
+      },
+      body
+    });
+
+  let responseData = await response.text();
+  if (!responseData) {
+    return null;  
+  }
+  return JSON.parse(responseData);
+}
+
 document.getElementById('p5saveDateiname').value = 'BlocklyCode';
 
 //let currentlyOpenSketchId = null;
@@ -8,37 +43,25 @@ document.getElementById('p5Save').onclick = async function() {
   try {
     const filename = document.getElementById('p5saveDateiname').value;
 
-
-    // HACK: get all existing sketches
-    const responseRead = await fetch('https://api.nodb.sh/p5js-blockly/prod/sketches?token=ob2y31v0j832st&__per_page=100', {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      });
-    const {sketches} = await responseRead.json();
-
-    // find the id id of the one with the target filename
-    const existingSketch = sketches.find(s => s.name === filename);
+    // later auto-save to current filename, for now, check by name
+    const existingSketch = (await supabaseCall('GET', {name: `eq.${filename}`}))?.[0];
     
     const json = Blockly.serialization.workspaces.save(Blockly.mainWorkspace);
+
+    // upsert
+
     const doc = {
-      id: existingSketch?.id ?? null,
+      id: existingSketch?.id ?? undefined,
       name: filename,
       data: json
     }
 
-    const response = await fetch('https://api.nodb.sh/p5js-blockly/prod/sketches?token=ob2y31v0j832st', {
-      method: existingSketch ? 'PUT' : 'POST',
+    const response = await supabaseCall('POST', doc, {
       headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify([doc])
+        'Prefer': 'resolution=merge-duplicates,return=representation'        
+      }
     });
-
-    
-    //const data = await response.json();    
-    //currentlyOpenSketchId = data[0].id;
+    currentlyOpenSketchId = response[0].id;
     
     // Download as a file
     // let link = document.createElement('a');
