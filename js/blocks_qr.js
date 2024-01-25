@@ -102,7 +102,7 @@ registerBlock("qr_getModuleValue", {
 });
 
 defineJS("qr_getModuleValue", ({valueToCode, block}) => {
-  return [`${valueToCode("qrcode")}[${valueToCode("y")}-1][${valueToCode("x")}-1][1]`, Blockly.JavaScript.ORDER_FUNCTION_CALL];
+  return [`${valueToCode("qrcode")}[${valueToCode("y")}-1]?.[${valueToCode("x")}-1]?.[1]`, Blockly.JavaScript.ORDER_FUNCTION_CALL];
 });
 
 registerBlock("qr_getModuleType", {
@@ -119,7 +119,7 @@ registerBlock("qr_getModuleType", {
 });
 
 defineJS("qr_getModuleType", ({valueToCode, block}) => {
-  return [`${valueToCode("qrcode")}[${valueToCode("y")}-1][${valueToCode("x")}-1][0]`, Blockly.JavaScript.ORDER_FUNCTION_CALL];
+  return [`${valueToCode("qrcode")}[${valueToCode("y")}-1]?.[${valueToCode("x")}-1]?.[0]`, Blockly.JavaScript.ORDER_FUNCTION_CALL];
 });
 
 ////////// Below is the IDE UX integration
