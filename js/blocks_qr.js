@@ -135,7 +135,7 @@ function startStopQRCodeScanner() {
   }
 
   qrScannerInterval = window.setInterval(() => {
-    testQRCode(canvas);
+    //testQRCode(canvas);
   }, 1700);
 }
 
