@@ -96,6 +96,23 @@ Blockly.JavaScript['line_var'] = function(block) {
   return code;
 };
 
+registerFunctionCall("p5_bezier", "p5sketch.bezier", {
+  name: "bezier()",
+  color: "#e67e22",
+  tooltip: "Draw a bezier curve",
+  hasOutput: false,
+  fields: {
+    x1: "Number",
+    y1: "Number",
+    cp1x: "Number",
+    cp1y: "Number",
+    cp2x: "Number",
+    cp2y: "Number",
+    x2: "Number",
+    y2: "Number",
+  }
+});
+
 Blockly.Blocks['triangle_var'] = {
   init: function() {
     this.appendDummyInput()

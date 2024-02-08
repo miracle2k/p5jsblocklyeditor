@@ -210,6 +210,7 @@ var NewToolbox = {
             "y2": number(0),
           }
         },
+        block("p5_bezier"),
         {
           "kind": "block",
           "type": "triangle_var",
