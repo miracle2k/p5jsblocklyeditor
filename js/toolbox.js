@@ -1031,7 +1031,8 @@ var NewToolbox = {
             }
           }
         },
-        block('hsbToRgb')
+        block('hsbToRgb'),
+        block('hsbToRgb_alpha')
       ],
       "categorystyle": "colour_category"
     },    
