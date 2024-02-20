@@ -924,6 +924,7 @@ var NewToolbox = {
             }
           }
         },
+        block("x_lists_array_push"),
         {
           "kind": "block",
           "type": "lists_getSublist",
@@ -955,7 +956,7 @@ var NewToolbox = {
         {
           "kind": "block",
           "type": "lists_sort"
-        }
+        },        
       ],
       "categorystyle": "list_category"
     },

@@ -55,3 +55,17 @@ registerFunctionCall("x_math_cycle", "cycle", {
     duration: "Number",
   }
 });
+
+registerBlock("x_lists_array_push", {
+  name: "append to",
+  color: "#745ba5",
+  tooltip: "array.push()",
+  fields: {
+    list: "",
+    item: "",
+  }
+});
+
+defineJS("x_lists_array_push", ({valueToCode, block}) => {
+  return `${valueToCode("list")}.push(${valueToCode("item")})`;
+});
