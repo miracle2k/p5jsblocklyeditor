@@ -165,6 +165,7 @@ var NewToolbox = {
             "input": number(0),
           }},
         block('p5_noise2d'),
+        block('p5_noise3d'),
         {"kind": "block", "type": "push_pop"},
         {"kind": "block", "type": "translate_var"},
         {"kind": "block", "type": "rotate_var"},

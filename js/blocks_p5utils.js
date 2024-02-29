@@ -76,6 +76,18 @@ registerFunctionCall("p5_noise2d", "p5sketch.noise", {
   }
 });
 
+registerFunctionCall("p5_noise3d", "p5sketch.noise", {
+  name: "Noise 3D",
+  color,
+  tooltip: "Get a 3D noise value",
+  hasOutput: true,
+  fields: {
+    x: "Number",
+    y: "Number",
+    z: "Number",
+  }
+});
+
 registerFunctionCall("p5_curveVertex", "p5sketch.curveVertex", {
   name: "curveVertex()",
   color: "#e67e22",
