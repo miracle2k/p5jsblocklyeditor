@@ -301,6 +301,36 @@ registerFunctionCall("strokeweight_var", "p5sketch.strokeWeight", {
   }
 });
 
+registerBlock("dom_radialGradient", {
+  name: "Radial Gradient Fill",
+  color: farbeAussehen,
+  tooltip: "Set fill style to a radial gradient",
+  fields: {
+    x0: "Number",
+    y0: "Number",
+    r0: "Number",
+    x1: "Number",
+    y1: "Number",
+    r1: "Number",
+  },
+  allowStatements: true
+});
+
+defineJS("dom_radialGradient", function ({valueToCode, block}) {
+  const x0 = valueToCode("x0");
+  const y0 = valueToCode("y0");
+  const r0 = valueToCode("r0");
+  const x1 = valueToCode("x1");
+  const y1 = valueToCode("y1");
+  const r1 = valueToCode("r1");
+  const initCode = `let g__ = p5sketch.drawingContext.createLinearGradient(${x0}, ${y0}, ${r0}, ${x1}, ${y1}, ${r1});\n`;
+  const completeCode = `p5sketch.drawingContext.fillStyle = g__;\n`;
+  const statementsDo = removeLeadingSpaces(Blockly.JavaScript.statementToCode(block, 'do'));
+  const allCode = initCode + statementsDo + completeCode;
+  // Wrap in block to protect against g__ being re-used
+  return '{\n' + Blockly.JavaScript.prefixLines(allCode, Blockly.JavaScript.INDENT) + '}\n';
+});
+
 
 registerBlock("dom_linearGradient", {
   name: "Linear Gradient Fill",
@@ -315,6 +345,8 @@ registerBlock("dom_linearGradient", {
   allowStatements: true
 });
 
+
+// Also works for other types of gradients
 registerBlock("dom_linearGradient_colorStop", {
   name: "addColorStop()",
   color: farbeAussehen,
@@ -325,6 +357,7 @@ registerBlock("dom_linearGradient_colorStop", {
   },
   allowStatements: false
 });
+
 
 defineJS("dom_linearGradient", function ({valueToCode, block}) {
   const x0 = valueToCode("x0");

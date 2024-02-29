@@ -324,6 +324,7 @@ var NewToolbox = {
           }
         },
         block('dom_linearGradient'),
+        block('dom_radialGradient'),
         block('dom_linearGradient_colorStop'),
       ]
     },
